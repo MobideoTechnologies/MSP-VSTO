@@ -1,0 +1,2207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://www.mobideo.com/Guide/Api" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://www.mobideo.com/Guide/Api" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.mobideo.com/Guide/Api">
+      <s:element name="GetTaskComments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="referenceId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTaskCommentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTaskCommentsResult" type="tns:GuideServicesQueryResultsOfTaskComment" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GuideServicesQueryResultsOfTaskComment">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UtcNow" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfTaskComment" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsChunked" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkSize" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkStartIndex" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTaskComment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TaskComment" nillable="true" type="tns:TaskComment" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TaskComment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TokenCredentials" type="tns:TokenCredentials" />
+      <s:complexType name="TokenCredentials">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="UserCredentials" type="tns:UserCredentials" />
+      <s:complexType name="UserCredentials">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="GetTaskInformation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="referenceId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="returnPrecondition" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTaskInformationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTaskInformationResult" type="tns:GuideServicesQueryResultsOfTaskInformation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GuideServicesQueryResultsOfTaskInformation">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UtcNow" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfTaskInformation" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsChunked" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkSize" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkStartIndex" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTaskInformation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TaskInformation" nillable="true" type="tns:TaskInformation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TaskInformation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Progress" type="tns:TaskProgressInformation" />
+          <s:element minOccurs="0" maxOccurs="1" name="Assignment" type="tns:TaskAssignementInformation" />
+          <s:element minOccurs="1" maxOccurs="1" name="SnapshotDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskPriority" nillable="true" type="tns:EntityPriority" />
+          <s:element minOccurs="1" maxOccurs="1" name="EquipmentPriority" nillable="true" type="tns:EntityPriority" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentDocument" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EquipmentId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SiteId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Source" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreatedBy" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DueDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompletionDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartedAtDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Summary" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="State" type="tns:TaskState" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldValues" type="tns:ArrayOfTaskFieldValue" />
+          <s:element minOccurs="0" maxOccurs="1" name="PreConditions" type="tns:ArrayOfTaskPrecondition" />
+          <s:element minOccurs="1" maxOccurs="1" name="locked" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaskProgressStatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OriginalstartTime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="OriginalEndTime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmployeeRefrenceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TeamRefrenceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TeamGroupRefrenceId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TaskProgressInformation">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:TaskProgressStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="EstimatedEndUtc" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompletedSteps" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalStepsCount" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TaskProgressStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="All" />
+          <s:enumeration value="NotStarted" />
+          <s:enumeration value="OnGoing" />
+          <s:enumeration value="Completed" />
+          <s:enumeration value="Risk" />
+          <s:enumeration value="Failed" />
+          <s:enumeration value="PendingCompleted" />
+          <s:enumeration value="Declined" />
+          <s:enumeration value="RollBack" />
+          <s:enumeration value="StartTimeRisk" />
+          <s:enumeration value="EndTimeRisk" />
+          <s:enumeration value="StartTimeFailed" />
+          <s:enumeration value="EndTimeFailed" />
+          <s:enumeration value="Holded" />
+          <s:enumeration value="Paused" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="TaskAssignementInformation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssignmentType" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="EntityPriority">
+        <s:restriction base="s:string">
+          <s:enumeration value="Critical" />
+          <s:enumeration value="High" />
+          <s:enumeration value="Medium" />
+          <s:enumeration value="MediumLow" />
+          <s:enumeration value="Low" />
+          <s:enumeration value="None" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="TaskState">
+        <s:restriction base="s:string">
+          <s:enumeration value="Created" />
+          <s:enumeration value="Assigned" />
+          <s:enumeration value="Sent" />
+          <s:enumeration value="Recieved" />
+          <s:enumeration value="Started" />
+          <s:enumeration value="PauseRequestPending" />
+          <s:enumeration value="Paused" />
+          <s:enumeration value="Resumed" />
+          <s:enumeration value="AbortRequestPending" />
+          <s:enumeration value="Aborted" />
+          <s:enumeration value="CancelRequestPending" />
+          <s:enumeration value="Cancelled" />
+          <s:enumeration value="Declined" />
+          <s:enumeration value="Completed" />
+          <s:enumeration value="Transferred" />
+          <s:enumeration value="Viewed" />
+          <s:enumeration value="PendingApproval" />
+          <s:enumeration value="PendingCompleted" />
+          <s:enumeration value="RollBack" />
+          <s:enumeration value="Holded" />
+          <s:enumeration value="Unlocked" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfTaskFieldValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TaskFieldValue" nillable="true" type="tns:TaskFieldValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TaskFieldValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ValueProviderType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ValueProviderField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ValueProviderParameter" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Index" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:TaskFieldType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TaskFieldType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Int" />
+          <s:enumeration value="Combo" />
+          <s:enumeration value="String" />
+          <s:enumeration value="Float" />
+          <s:enumeration value="MultiLine" />
+          <s:enumeration value="LargeMultiline" />
+          <s:enumeration value="Gps" />
+          <s:enumeration value="Signature" />
+          <s:enumeration value="Rating" />
+          <s:enumeration value="Image" />
+          <s:enumeration value="DateTime" />
+          <s:enumeration value="Gis" />
+          <s:enumeration value="Boolean" />
+          <s:enumeration value="File" />
+          <s:enumeration value="Label" />
+          <s:enumeration value="SignOff" />
+          <s:enumeration value="Sketch" />
+          <s:enumeration value="CodesTable" />
+          <s:enumeration value="ExecuteApplication" />
+          <s:enumeration value="Barcode" />
+          <s:enumeration value="Verification" />
+          <s:enumeration value="Computed" />
+          <s:enumeration value="Billing" />
+          <s:enumeration value="TemplatedText" />
+          <s:enumeration value="Interactive" />
+          <s:enumeration value="ImageEditor" />
+          <s:enumeration value="WebServiceInput" />
+          <s:enumeration value="EntityStatus" />
+          <s:enumeration value="OpenTask" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfTaskPrecondition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TaskPrecondition" nillable="true" type="tns:TaskPrecondition" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TaskPrecondition">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiEntity">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ActionNumber" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Trigger" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="ContentDocumentId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ContentBookName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TaskReferenceId" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ParentId" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="TaskProgressStatus" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ApiEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenceId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UtcNow" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastModified" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProjectId" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTaskReportModel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="taskId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTaskReportModelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTaskReportModelResult" type="tns:TaskReportModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TaskReportModel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TaskId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Properties" type="tns:ArrayOfTaskReportProperty" />
+          <s:element minOccurs="0" maxOccurs="1" name="RootItem" type="tns:TaskReportItemModel" />
+          <s:element minOccurs="1" maxOccurs="1" name="SnapshotDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentDocumentId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentTitle" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTaskReportProperty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TaskReportProperty" nillable="true" type="tns:TaskReportProperty" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TaskReportProperty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Group" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TaskReportItemModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BoolTextFiled" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Index" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TimeStamp" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Values" type="tns:ArrayOfTaskReportItemValue" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comments" type="tns:ArrayOfTaskReportItemValue" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ValueProviderType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ValueProviderField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ValueProviderParameter" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BookName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfTaskReportItemModel" />
+          <s:element minOccurs="1" maxOccurs="1" name="SortOrder" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentElementName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentElementType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IssueReports" type="tns:ArrayOfTaskReportItemValue" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateTimeDisplayType" nillable="true" type="tns:DateTimeDisplayType" />
+          <s:element minOccurs="1" maxOccurs="1" name="Mandatory" nillable="true" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="LegalNotes" type="tns:LegalNotesProperty" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsHidden" nillable="true" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="MatrixCellNames" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="DefaultSettings" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EditableByRule" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsStep" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsLabel" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTaskReportItemValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TaskReportItemValue" nillable="true" type="tns:TaskReportItemValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TaskReportItemValue">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ActivityId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ValueLabel" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Index" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndTime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EmployeeId" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmployeeName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BookName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SectionName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="GpsLongitude" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="GpsLatitude" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasHistory" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="DefaultSettings" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TextType" type="tns:TaskActivityValueType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TaskActivityValueType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Non" />
+          <s:enumeration value="Boolean" />
+          <s:enumeration value="String" />
+          <s:enumeration value="DateTime" />
+          <s:enumeration value="Int32" />
+          <s:enumeration value="Int64" />
+          <s:enumeration value="Single" />
+          <s:enumeration value="Double" />
+          <s:enumeration value="byteArray" />
+          <s:enumeration value="uri" />
+          <s:enumeration value="sign" />
+          <s:enumeration value="pair" />
+          <s:enumeration value="valuepair" />
+          <s:enumeration value="file" />
+          <s:enumeration value="matrix" />
+          <s:enumeration value="gps" />
+          <s:enumeration value="xsign" />
+          <s:enumeration value="tuple" />
+          <s:enumeration value="DownloadFile" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfTaskReportItemModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TaskReportItemModel" nillable="true" type="tns:TaskReportItemModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DateTimeDisplayType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DateTime" />
+          <s:enumeration value="Date" />
+          <s:enumeration value="Time" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="LegalNotesProperty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Header" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Content" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTasksInformation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tasksQuery" type="tns:TasksQuery" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TasksQuery">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:QueryApi">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ContentDocumentId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DocumentTitle" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ProgressStatus" nillable="true" type="tns:TaskProgressStatus" />
+              <s:element minOccurs="0" maxOccurs="1" name="Summary" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="DueDateFrom" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="DueDateTo" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="StartedFrom" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="StartedTo" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="CompletedFrom" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="CompletedTo" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="SnapshotDate" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="UtcNow" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsChunked" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ChunkSize" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ChunkStartIndex" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="EmployeeReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SiteReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EquipmentReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Source" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CreatedBy" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CreatedFrom" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="CreatedTo" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="TaskType" type="tns:TaskType" />
+              <s:element minOccurs="0" maxOccurs="1" name="ExcludeProgressStatus" type="tns:ArrayOfTaskProgressStatus" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReturnPrecondition" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="QueryApi">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartIndex" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExtendedPropertyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenceIds" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TaskType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Regular" />
+          <s:enumeration value="IssueReport" />
+          <s:enumeration value="AdHoc" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfTaskProgressStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TaskProgressStatus" type="tns:TaskProgressStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTasksInformationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTasksInformationResult" type="tns:GuideServicesQueryResultsOfTaskInformation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTasksStatusInformation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tasksQuery" type="tns:TasksQuery" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTasksStatusInformationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTasksStatusInformationResult" type="tns:GuideServicesQueryResultsOfTaskStatusInformation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GuideServicesQueryResultsOfTaskStatusInformation">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UtcNow" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfTaskStatusInformation" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsChunked" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkSize" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkStartIndex" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTaskStatusInformation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TaskStatusInformation" nillable="true" type="tns:TaskStatusInformation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TaskStatusInformation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Assignment" type="tns:TaskAssignementInformation" />
+          <s:element minOccurs="0" maxOccurs="1" name="Progress" type="tns:TaskProgressInformation" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskPriority" nillable="true" type="tns:EntityPriority" />
+          <s:element minOccurs="1" maxOccurs="1" name="EquipmentPriority" nillable="true" type="tns:EntityPriority" />
+          <s:element minOccurs="1" maxOccurs="1" name="State" type="tns:TaskState" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubTasksProgress" type="tns:ArrayOfSubTaskProgressInformation" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExtendedProperties" type="tns:ArrayOfNameValuePair" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskStarTime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastModified" nillable="true" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSubTaskProgressInformation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SubTaskProgressInformation" nillable="true" type="tns:SubTaskProgressInformation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SubTaskProgressInformation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ContentDocumentId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentTitle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Progress" type="tns:TaskProgressInformation" />
+          <s:element minOccurs="1" maxOccurs="1" name="State" type="tns:TaskState" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfNameValuePair">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="NameValuePair" nillable="true" type="tns:NameValuePair" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="NameValuePair">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Index" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EntityName" type="tns:EntityName" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="EntityName">
+        <s:restriction base="s:string">
+          <s:enumeration value="Task" />
+          <s:enumeration value="Site" />
+          <s:enumeration value="Employee" />
+          <s:enumeration value="Equipment" />
+          <s:enumeration value="EquipmentType" />
+          <s:enumeration value="Customer" />
+          <s:enumeration value="CustomerType" />
+          <s:enumeration value="Tool" />
+          <s:enumeration value="ToolType" />
+          <s:enumeration value="FilterGroup" />
+          <s:enumeration value="FilterGroupTask" />
+          <s:enumeration value="Team" />
+          <s:enumeration value="TeamGroup" />
+          <s:enumeration value="TaskPlan" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetTaskStatusInformation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="referenceId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="returnPrecondition" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTaskStatusInformationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTaskStatusInformationResult" type="tns:GuideServicesQueryResultsOfTaskStatusInformation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUtcNow">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetUtcNowResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetUtcNowResult" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFilterGroupTasks">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="referenceId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFilterGroupTasksResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFilterGroupTasksResult" type="tns:GuideServicesQueryResultsOfTaskInformation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTaskById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="referenceId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTaskByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTaskByIdResult" type="tns:TaskInformation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTasksExtendedProperty">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tasksQuery" type="tns:TasksQuery" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTasksExtendedPropertyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTasksExtendedPropertyResult" type="tns:GuideServicesQueryResultsOfTaskExtendedPropertiesResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GuideServicesQueryResultsOfTaskExtendedPropertiesResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UtcNow" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfTaskExtendedPropertiesResult" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsChunked" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkSize" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkStartIndex" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTaskExtendedPropertiesResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TaskExtendedPropertiesResult" nillable="true" type="tns:TaskExtendedPropertiesResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TaskExtendedPropertiesResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaskInformation" type="tns:TaskInformation" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetFilterGroupByReferenceIds">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="filterGroupQuery" type="tns:FilterGroupQuery" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="FilterGroupQuery">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="referenceIds" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExtendedPropertyName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetFilterGroupByReferenceIdsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFilterGroupByReferenceIdsResult" type="tns:GuideServicesQueryResultsOfFilterGroupTask" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GuideServicesQueryResultsOfFilterGroupTask">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UtcNow" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfFilterGroupTask" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsChunked" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkSize" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkStartIndex" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfFilterGroupTask">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FilterGroupTask" nillable="true" type="tns:FilterGroupTask" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FilterGroupTask">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiEntityWithExtendedProperties">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="FilterGroupName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BookName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EquipmentName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EquipmentReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EquipmentSerialNumber" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SiteReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SiteName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EquipmentTypeReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProjectReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ManufacturerReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TeamReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EmployeeReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FilterGroupReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SubFilterGroupReferenceId" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="DueTime" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="StartTime" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="SubFilterDueTime" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="SubFilterStartTime" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Summary" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Group" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsDeleted" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="PreconditionReferenceId" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="SortOrder" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="FilterGroupSortOrder" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Priority" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Update" nillable="true" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="OriginalTimeWindowEnd" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OriginalTimeWindowStart" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="FilterGroupPriority" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="PreconditionTaskReferenceIds" type="tns:ArrayOfString" />
+              <s:element minOccurs="0" maxOccurs="1" name="TaskPreconditions" type="tns:ArrayOfTaskPrecondition" />
+              <s:element minOccurs="0" maxOccurs="1" name="CustomerReferenceId" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ApiEntityWithExtendedProperties">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiEntity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ExtendedProperties" type="tns:ArrayOfNameValuePair" />
+              <s:element minOccurs="0" maxOccurs="1" name="DataSources" type="tns:ArrayOfSpecificDataSource" />
+              <s:element minOccurs="0" maxOccurs="1" name="Status" type="tns:EntityStatus" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfSpecificDataSource">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SpecificDataSource" nillable="true" type="tns:SpecificDataSource" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SpecificDataSource">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DataSourceName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfSpecificDataSourceItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="LanguageItems" type="tns:ArrayOfDataSourceLanguage" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSpecificDataSourceItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SpecificDataSourceItem" nillable="true" type="tns:SpecificDataSourceItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SpecificDataSourceItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ItemKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="tns:ArrayOfProperty" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProperty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Property" nillable="true" type="tns:Property" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Property">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:PropertyType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="PropertyType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Text" />
+          <s:enumeration value="Numeric" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDataSourceLanguage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DataSourceLanguage" nillable="true" type="tns:DataSourceLanguage" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DataSourceLanguage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfSpecificDataSourceItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="Language" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EntityStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastModified" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ItemStatus" type="tns:ItemStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ItemStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Active" />
+          <s:enumeration value="Deleted" />
+          <s:enumeration value="Archived" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetEquipments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="equipmentQuery" type="tns:EquipmentQuery" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EquipmentQuery">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:QueryApi">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Type" type="tns:TextSearchCriteria" />
+              <s:element minOccurs="0" maxOccurs="1" name="Site" type="tns:TextSearchCriteria" />
+              <s:element minOccurs="0" maxOccurs="1" name="SiteReferenceId" type="tns:TextSearchCriteria" />
+              <s:element minOccurs="0" maxOccurs="1" name="SerialNumber" type="tns:TextSearchCriteria" />
+              <s:element minOccurs="0" maxOccurs="1" name="Manufacturer" type="tns:TextSearchCriteria" />
+              <s:element minOccurs="0" maxOccurs="1" name="Allocation" type="tns:AllocationFilter" />
+              <s:element minOccurs="0" maxOccurs="1" name="StatusName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ParentsOnly" nillable="true" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="TextSearchCriteria">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Matching" type="tns:TextMatching" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TextMatching">
+        <s:restriction base="s:string">
+          <s:enumeration value="Within" />
+          <s:enumeration value="Whole" />
+          <s:enumeration value="StartsWith" />
+          <s:enumeration value="EndsWith" />
+          <s:enumeration value="Regex" />
+          <s:enumeration value="WildCard" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="AllocationFilter">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="StartDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="TeamGroupId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TeamId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EmployeeId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Active" nillable="true" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetEquipmentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEquipmentsResult" type="tns:GuideServicesQueryResultsOfEquipment" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GuideServicesQueryResultsOfEquipment">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UtcNow" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfEquipment" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsChunked" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkSize" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkStartIndex" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEquipment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Equipment" nillable="true" type="tns:Equipment" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Equipment">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiEntityWithExtendedProperties">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="SiteReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EquipmentTypeReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SerialNumber" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Coordinates" type="tns:GpsCoordinates" />
+              <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="SortOrder" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="EntityStatusReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ParentReferenceId" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="GpsCoordinates">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Longitude" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Latitude" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAttachments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="attachmentQuery" type="tns:AttachmentQuery" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AttachmentQuery">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:TasksQuery">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="LastModified" nillable="true" type="s:dateTime" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetAttachmentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAttachmentsResult" type="tns:GuideServicesQueryResultsOfAttachment" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GuideServicesQueryResultsOfAttachment">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UtcNow" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfAttachment" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsChunked" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkSize" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkStartIndex" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAttachment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Attachment" nillable="true" type="tns:Attachment" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Attachment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AttachmentUniqueId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EquipmentReferenceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaskReferenceId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastModified" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="AttachmentLink" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllExtendedProperties">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllExtendedPropertiesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllExtendedPropertiesResult" type="tns:GuideServicesQueryResultsOfNameValuePair" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GuideServicesQueryResultsOfNameValuePair">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UtcNow" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfNameValuePair" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsChunked" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkSize" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkStartIndex" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllBooks">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllBooksResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllBooksResult" type="tns:GuideServicesQueryResultsOfBook" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GuideServicesQueryResultsOfBook">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UtcNow" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfBook" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsChunked" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkSize" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkStartIndex" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBook">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Book" nillable="true" type="tns:Book" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Book">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Version" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Library" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PublishedDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Package" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllProjects">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllProjectsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllProjectsResult" type="tns:GuideServicesQueryResultsOfProject" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GuideServicesQueryResultsOfProject">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UtcNow" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfProject" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsChunked" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkSize" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkStartIndex" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProject">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Project" nillable="true" type="tns:Project" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Project">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiEntity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="StartTime" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="EndTime" nillable="true" type="s:dateTime" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetAllEmployees">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllEmployeesQuery" type="tns:AllEntitiesQueryApi" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AllEntitiesQueryApi">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:QueryApi">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="LastModified" nillable="true" type="s:dateTime" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetAllEmployeesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllEmployeesResult" type="tns:GuideServicesQueryResultsOfEmployee" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GuideServicesQueryResultsOfEmployee">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UtcNow" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfEmployee" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsChunked" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkSize" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkStartIndex" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEmployee">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Employee" nillable="true" type="tns:Employee" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Employee">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiResourceWithExtendedProperties">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Roles" type="tns:ArrayOfString" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TeamReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BusinessUnit" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="SkillSet" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Enabled" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="TeamGroupReferenceId" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ApiResourceWithExtendedProperties">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiEntityWithExtendedProperties">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ProjectReferenceIds" type="tns:ArrayOfString" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetAllTeams">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllTeamsQuery" type="tns:AllEntitiesQueryApi" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllTeamsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllTeamsResult" type="tns:GuideServicesQueryResultsOfTeam" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GuideServicesQueryResultsOfTeam">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UtcNow" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfTeam" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsChunked" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkSize" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkStartIndex" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTeam">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Team" nillable="true" type="tns:Team" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Team">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiResourceWithExtendedProperties">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TeamGroupReferenceId" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="SkillSet" nillable="true" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetAllSites">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllSitesQuery" type="tns:AllEntitiesQueryApi" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllSitesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllSitesResult" type="tns:GuideServicesQueryResultsOfSite" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GuideServicesQueryResultsOfSite">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UtcNow" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfSite" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsChunked" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkSize" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkStartIndex" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSite">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Site" nillable="true" type="tns:Site" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Site">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiEntityWithExtendedProperties">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Coordinates" type="tns:GpsCoordinates" />
+              <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Allocations" type="tns:ArrayOfAllocation" />
+              <s:element minOccurs="0" maxOccurs="1" name="EntityStatusReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ParentReferenceId" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfAllocation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Allocation" nillable="true" type="tns:Allocation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Allocation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TeamGroupReferenceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TeamReferenceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmployeeReferenceId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllTaskPlans">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllTaskPlansQuery" type="tns:AllEntitiesQueryApi" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllTaskPlansResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllTaskPlansResult" type="tns:GuideServicesQueryResultsOfTaskPlan" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GuideServicesQueryResultsOfTaskPlan">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UtcNow" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfTaskPlan" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsChunked" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkSize" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkStartIndex" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTaskPlan">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TaskPlan" nillable="true" type="tns:TaskPlan" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TaskPlan">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiEntityWithExtendedProperties">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Manufacturer" type="tns:ApiEntityProperty" />
+              <s:element minOccurs="0" maxOccurs="1" name="Equipment" type="tns:ApiEntityProperty" />
+              <s:element minOccurs="0" maxOccurs="1" name="EquipmentType" type="tns:ApiEntityProperty" />
+              <s:element minOccurs="0" maxOccurs="1" name="Site" type="tns:ApiEntityProperty" />
+              <s:element minOccurs="0" maxOccurs="1" name="Customer" type="tns:ApiEntityProperty" />
+              <s:element minOccurs="0" maxOccurs="1" name="Employee" type="tns:ApiEntityProperty" />
+              <s:element minOccurs="0" maxOccurs="1" name="Author" type="tns:ApiEntityProperty" />
+              <s:element minOccurs="0" maxOccurs="1" name="Team" type="tns:ApiEntityProperty" />
+              <s:element minOccurs="0" maxOccurs="1" name="TeamGroup" type="tns:ApiEntityProperty" />
+              <s:element minOccurs="0" maxOccurs="1" name="Group" type="tns:ApiEntityProperty" />
+              <s:element minOccurs="0" maxOccurs="1" name="FilterGroupReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SubFilterGroupReferenceId" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CreateNewFilterGroup" nillable="true" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="TakeDatesFromTaskPlan" nillable="true" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="GenerateTaskReferenceIdFromGuid" nillable="true" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="FromTime" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="DueTime" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="TasksComments" type="tns:ArrayOfKeyValuePairOfStringString" />
+              <s:element minOccurs="1" maxOccurs="1" name="Assignable" nillable="true" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="Priority" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProjectReferenceId" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="SubFilterDueTime" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="SubFilterStartTime" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OriginalTimeWindowEnd" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OriginalTimeWindowStart" nillable="true" type="s:dateTime" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ApiEntityProperty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenceValue" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeInFilterGroup" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReferenceDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExtendedProperties" type="tns:ArrayOfNameValuePair" />
+          <s:element minOccurs="0" maxOccurs="1" name="Properties" type="tns:ArrayOfProperty" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfKeyValuePairOfStringString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="KeyValuePairOfStringString" type="tns:KeyValuePairOfStringString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="KeyValuePairOfStringString" />
+      <s:element name="GetAllEquipmentTypes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllEquipmentTypesQuery" type="tns:AllEntitiesQueryApi" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllEquipmentTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllEquipmentTypesResult" type="tns:GuideServicesQueryResultsOfEquipmentType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GuideServicesQueryResultsOfEquipmentType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UtcNow" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfEquipmentType" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsChunked" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkSize" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkStartIndex" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEquipmentType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EquipmentType" nillable="true" type="tns:EquipmentType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EquipmentType">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiEntityWithExtendedProperties">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ManufacturerReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CatalogNumber" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetAllManufacturers">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllManufacturersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllManufacturersResult" type="tns:GuideServicesQueryResultsOfEquipmentManufacturer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GuideServicesQueryResultsOfEquipmentManufacturer">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UtcNow" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfEquipmentManufacturer" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsChunked" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkSize" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkStartIndex" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEquipmentManufacturer">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EquipmentManufacturer" nillable="true" type="tns:EquipmentManufacturer" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EquipmentManufacturer">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiEntity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetTaskCommentsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTaskComments" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskCommentsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTaskCommentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskCommentsTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskCommentsUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskInformationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTaskInformation" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskInformationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTaskInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskInformationTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskInformationUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskReportModelSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTaskReportModel" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskReportModelSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTaskReportModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskReportModelTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskReportModelUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksInformationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTasksInformation" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksInformationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTasksInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksInformationTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksInformationUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksStatusInformationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTasksStatusInformation" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksStatusInformationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTasksStatusInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksStatusInformationTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksStatusInformationUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskStatusInformationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTaskStatusInformation" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskStatusInformationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTaskStatusInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskStatusInformationTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskStatusInformationUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetUtcNowSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUtcNow" />
+  </wsdl:message>
+  <wsdl:message name="GetUtcNowSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUtcNowResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUtcNowTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetUtcNowUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetFilterGroupTasksSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFilterGroupTasks" />
+  </wsdl:message>
+  <wsdl:message name="GetFilterGroupTasksSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFilterGroupTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFilterGroupTasksTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetFilterGroupTasksUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTaskById" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTaskByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskByIdTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskByIdUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksExtendedPropertySoapIn">
+    <wsdl:part name="parameters" element="tns:GetTasksExtendedProperty" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksExtendedPropertySoapOut">
+    <wsdl:part name="parameters" element="tns:GetTasksExtendedPropertyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksExtendedPropertyTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksExtendedPropertyUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetFilterGroupByReferenceIdsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFilterGroupByReferenceIds" />
+  </wsdl:message>
+  <wsdl:message name="GetFilterGroupByReferenceIdsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFilterGroupByReferenceIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFilterGroupByReferenceIdsTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetFilterGroupByReferenceIdsUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetEquipmentsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEquipments" />
+  </wsdl:message>
+  <wsdl:message name="GetEquipmentsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEquipmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEquipmentsTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetEquipmentsUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetAttachmentsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAttachments" />
+  </wsdl:message>
+  <wsdl:message name="GetAttachmentsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAttachmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAttachmentsTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetAttachmentsUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetAllExtendedPropertiesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllExtendedProperties" />
+  </wsdl:message>
+  <wsdl:message name="GetAllExtendedPropertiesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllExtendedPropertiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllExtendedPropertiesTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetAllExtendedPropertiesUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetAllBooksSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllBooks" />
+  </wsdl:message>
+  <wsdl:message name="GetAllBooksSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllBooksResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllBooksTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetAllBooksUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetAllProjectsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllProjects" />
+  </wsdl:message>
+  <wsdl:message name="GetAllProjectsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllProjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllProjectsTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetAllProjectsUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetAllEmployeesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllEmployees" />
+  </wsdl:message>
+  <wsdl:message name="GetAllEmployeesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllEmployeesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllEmployeesTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetAllEmployeesUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTeamsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllTeams" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTeamsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllTeamsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTeamsTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTeamsUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSitesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllSites" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSitesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllSitesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSitesTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSitesUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTaskPlansSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllTaskPlans" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTaskPlansSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllTaskPlansResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTaskPlansTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTaskPlansUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetAllEquipmentTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllEquipmentTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetAllEquipmentTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllEquipmentTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllEquipmentTypesTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetAllEquipmentTypesUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetAllManufacturersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllManufacturers" />
+  </wsdl:message>
+  <wsdl:message name="GetAllManufacturersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllManufacturersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllManufacturersTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetAllManufacturersUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:portType name="GuideServicesQueryApiWebService">
+    <wsdl:operation name="GetTaskComments">
+      <wsdl:input message="tns:GetTaskCommentsSoapIn" />
+      <wsdl:output message="tns:GetTaskCommentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskInformation">
+      <wsdl:input message="tns:GetTaskInformationSoapIn" />
+      <wsdl:output message="tns:GetTaskInformationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskReportModel">
+      <wsdl:input message="tns:GetTaskReportModelSoapIn" />
+      <wsdl:output message="tns:GetTaskReportModelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksInformation">
+      <wsdl:input message="tns:GetTasksInformationSoapIn" />
+      <wsdl:output message="tns:GetTasksInformationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksStatusInformation">
+      <wsdl:input message="tns:GetTasksStatusInformationSoapIn" />
+      <wsdl:output message="tns:GetTasksStatusInformationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskStatusInformation">
+      <wsdl:input message="tns:GetTaskStatusInformationSoapIn" />
+      <wsdl:output message="tns:GetTaskStatusInformationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUtcNow">
+      <wsdl:input message="tns:GetUtcNowSoapIn" />
+      <wsdl:output message="tns:GetUtcNowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFilterGroupTasks">
+      <wsdl:input message="tns:GetFilterGroupTasksSoapIn" />
+      <wsdl:output message="tns:GetFilterGroupTasksSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskById">
+      <wsdl:input message="tns:GetTaskByIdSoapIn" />
+      <wsdl:output message="tns:GetTaskByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksExtendedProperty">
+      <wsdl:input message="tns:GetTasksExtendedPropertySoapIn" />
+      <wsdl:output message="tns:GetTasksExtendedPropertySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFilterGroupByReferenceIds">
+      <wsdl:input message="tns:GetFilterGroupByReferenceIdsSoapIn" />
+      <wsdl:output message="tns:GetFilterGroupByReferenceIdsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEquipments">
+      <wsdl:input message="tns:GetEquipmentsSoapIn" />
+      <wsdl:output message="tns:GetEquipmentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAttachments">
+      <wsdl:input message="tns:GetAttachmentsSoapIn" />
+      <wsdl:output message="tns:GetAttachmentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllExtendedProperties">
+      <wsdl:input message="tns:GetAllExtendedPropertiesSoapIn" />
+      <wsdl:output message="tns:GetAllExtendedPropertiesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBooks">
+      <wsdl:input message="tns:GetAllBooksSoapIn" />
+      <wsdl:output message="tns:GetAllBooksSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProjects">
+      <wsdl:input message="tns:GetAllProjectsSoapIn" />
+      <wsdl:output message="tns:GetAllProjectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllEmployees">
+      <wsdl:input message="tns:GetAllEmployeesSoapIn" />
+      <wsdl:output message="tns:GetAllEmployeesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTeams">
+      <wsdl:input message="tns:GetAllTeamsSoapIn" />
+      <wsdl:output message="tns:GetAllTeamsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSites">
+      <wsdl:input message="tns:GetAllSitesSoapIn" />
+      <wsdl:output message="tns:GetAllSitesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTaskPlans">
+      <wsdl:input message="tns:GetAllTaskPlansSoapIn" />
+      <wsdl:output message="tns:GetAllTaskPlansSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllEquipmentTypes">
+      <wsdl:input message="tns:GetAllEquipmentTypesSoapIn" />
+      <wsdl:output message="tns:GetAllEquipmentTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllManufacturers">
+      <wsdl:input message="tns:GetAllManufacturersSoapIn" />
+      <wsdl:output message="tns:GetAllManufacturersSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GuideServicesQueryApiWebService" type="tns:GuideServicesQueryApiWebService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetTaskComments">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetTaskComments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTaskCommentsTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetTaskCommentsUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskInformation">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetTaskInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTaskInformationTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetTaskInformationUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskReportModel">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetTaskReportModel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTaskReportModelTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetTaskReportModelUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksInformation">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetTasksInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTasksInformationTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetTasksInformationUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksStatusInformation">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetTasksStatusInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTasksStatusInformationTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetTasksStatusInformationUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskStatusInformation">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetTaskStatusInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTaskStatusInformationTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetTaskStatusInformationUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUtcNow">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetUtcNow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUtcNowTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetUtcNowUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFilterGroupTasks">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetFilterGroupTasks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetFilterGroupTasksTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetFilterGroupTasksUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskById">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetTaskById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTaskByIdTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetTaskByIdUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksExtendedProperty">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetTasksExtendedProperty" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTasksExtendedPropertyTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetTasksExtendedPropertyUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFilterGroupByReferenceIds">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetFilterGroupByReferenceIds" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetFilterGroupByReferenceIdsTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetFilterGroupByReferenceIdsUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEquipments">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetEquipments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEquipmentsTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetEquipmentsUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttachments">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetAttachments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAttachmentsTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetAttachmentsUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllExtendedProperties">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetAllExtendedProperties" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAllExtendedPropertiesTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetAllExtendedPropertiesUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBooks">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetAllBooks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAllBooksTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetAllBooksUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProjects">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetAllProjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAllProjectsTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetAllProjectsUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllEmployees">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetAllEmployees" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAllEmployeesTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetAllEmployeesUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTeams">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetAllTeams" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAllTeamsTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetAllTeamsUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSites">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetAllSites" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAllSitesTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetAllSitesUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTaskPlans">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetAllTaskPlans" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAllTaskPlansTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetAllTaskPlansUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllEquipmentTypes">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetAllEquipmentTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAllEquipmentTypesTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetAllEquipmentTypesUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllManufacturers">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetAllManufacturers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAllManufacturersTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetAllManufacturersUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GuideServicesQueryApiWebService1" type="tns:GuideServicesQueryApiWebService">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetTaskComments">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetTaskComments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTaskCommentsTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetTaskCommentsUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskInformation">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetTaskInformation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTaskInformationTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetTaskInformationUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskReportModel">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetTaskReportModel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTaskReportModelTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetTaskReportModelUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksInformation">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetTasksInformation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTasksInformationTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetTasksInformationUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksStatusInformation">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetTasksStatusInformation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTasksStatusInformationTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetTasksStatusInformationUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskStatusInformation">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetTaskStatusInformation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTaskStatusInformationTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetTaskStatusInformationUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUtcNow">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetUtcNow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUtcNowTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetUtcNowUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFilterGroupTasks">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetFilterGroupTasks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetFilterGroupTasksTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetFilterGroupTasksUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskById">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetTaskById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTaskByIdTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetTaskByIdUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksExtendedProperty">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetTasksExtendedProperty" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTasksExtendedPropertyTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetTasksExtendedPropertyUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFilterGroupByReferenceIds">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetFilterGroupByReferenceIds" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetFilterGroupByReferenceIdsTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetFilterGroupByReferenceIdsUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEquipments">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetEquipments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEquipmentsTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetEquipmentsUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttachments">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetAttachments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetAttachmentsTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetAttachmentsUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllExtendedProperties">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetAllExtendedProperties" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetAllExtendedPropertiesTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetAllExtendedPropertiesUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBooks">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetAllBooks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetAllBooksTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetAllBooksUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProjects">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetAllProjects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetAllProjectsTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetAllProjectsUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllEmployees">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetAllEmployees" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetAllEmployeesTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetAllEmployeesUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTeams">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetAllTeams" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetAllTeamsTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetAllTeamsUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSites">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetAllSites" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetAllSitesTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetAllSitesUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTaskPlans">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetAllTaskPlans" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetAllTaskPlansTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetAllTaskPlansUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllEquipmentTypes">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetAllEquipmentTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetAllEquipmentTypesTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetAllEquipmentTypesUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllManufacturers">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetAllManufacturers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetAllManufacturersTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetAllManufacturersUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GuideServicesQueryApiWebService">
+    <wsdl:port name="GuideServicesQueryApiWebService" binding="tns:GuideServicesQueryApiWebService">
+      <soap:address location="https://sdsrv12.mobideocloud.com/GuideServices/Api/query.asmx" />
+    </wsdl:port>
+    <wsdl:port name="GuideServicesQueryApiWebService1" binding="tns:GuideServicesQueryApiWebService1">
+      <soap12:address location="https://sdsrv12.mobideocloud.com/GuideServices/Api/query.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

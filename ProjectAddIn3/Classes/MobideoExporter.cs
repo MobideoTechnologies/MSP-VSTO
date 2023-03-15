@@ -26,10 +26,11 @@ namespace ProjectAddIn3.Classes
                 Logger.Info("*** Start export data from mobideo");
                 var progressBar = exportProgressBar as ProgressBar;
                 progressBar.Maximum = 100;
+                progressBar.Value = 30;
                 var projectTaskReferenceIds = GetProjectTasksReferenceIds(selectedSubProjects);
-                progressBar.Value = 20;
+                progressBar.Value = 60;
                 var projectMobideoTasks = await GetProjectTasksFromMobideo(projectTaskReferenceIds);
-                progressBar.Value = 80;
+                progressBar.Value = 90;
                 UpdateMspRecords(selectedSubProjects, projectMobideoTasks);
                 progressBar.Value = 100;
                 Logger.Info("*** Done export data from mobideo");

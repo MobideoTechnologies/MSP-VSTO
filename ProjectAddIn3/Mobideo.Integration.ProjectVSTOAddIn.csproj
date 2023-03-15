@@ -466,10 +466,11 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>ProjectAddIn3_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>6D29CB63C28D6C989A2B0583EDF3F4CA33EC4BB1</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>8DDEFE82B164E3A38030430462BE51F65C55DF3B</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

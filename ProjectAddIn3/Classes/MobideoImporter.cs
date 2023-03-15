@@ -28,11 +28,12 @@ namespace ProjectAddIn3.Classes
             Logger.Info("*** Start import files to mobideo");
             var subProjectsFiles = CreateSubProjectFiles(selectedSubProjects, out var filesToDelete);
             var importProgress = importProgressBar as ProgressBar;
-            importProgress.Style = ProgressBarStyle.Continuous;
             importProgress.Visible = true;
-            importProgress.Maximum = subProjectsFiles.Count;
+            importProgress.Maximum = 120;
             bool hasErrorOccured = false;
             var errorMessage = new StringBuilder();
+            importProgress.Value = 20;
+            int fileRelativePercentage = (1 / subProjectsFiles.Count) * 100;
             foreach(var subProjectFile in subProjectsFiles)
             {
                 try
@@ -52,7 +53,8 @@ namespace ProjectAddIn3.Classes
                 }
                 finally
                 {
-                    importProgress.Increment(1);
+                    importProgress.Value += fileRelativePercentage;
+                    Thread.Sleep(2000);
                 }
 
             }
@@ -79,8 +81,15 @@ namespace ProjectAddIn3.Classes
         {
             var subProjectFiles = new List<Tuple<string,Stream>>();
             filesToDelete = new List<string>();
+           
             var tempFolderPath = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).LocalPath + "\\TempFiles";
+            if (!Directory.Exists(tempFolderPath))
+            {
+                Directory.CreateDirectory(tempFolderPath);
+            }
+
             var application = Globals.ThisAddIn.Application;
+            application.AppMinimize();
             foreach (var subProject in selectedSubProjects)
             {
                 var currentSubProject = subProject.SubProjectLegacyObject;

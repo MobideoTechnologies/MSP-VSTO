@@ -100,7 +100,13 @@ namespace ProjectAddIn3.Classes
             try
             {
                 Logger.Info("*** Uploading log file to customer files");
-                var logFilePath = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).LocalPath + "\\logs\\MSP-VSTO-Info.txt";
+                var logFolderPath = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).LocalPath + "\\logs";
+                if(!Directory.Exists(logFolderPath))
+                {
+                    Directory.CreateDirectory(logFolderPath);
+                }
+
+                var logFilePath = string.Concat(logFolderPath,"\\","MSP-VSTO-Info.txt");
                 var customerFilesFileUploader = new CustomerFilesFileUploader();
                 using (FileStream fileStream = new FileStream(logFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 {

@@ -51,7 +51,6 @@
             // group1
             // 
             this.group1.Items.Add(this.RunBtn);
-            this.group1.Label = "group1";
             this.group1.Name = "group1";
             // 
             // RunBtn

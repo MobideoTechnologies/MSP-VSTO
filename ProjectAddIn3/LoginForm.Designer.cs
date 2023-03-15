@@ -1,5 +1,6 @@
 ﻿
 using System.Configuration;
+using System.Windows.Forms;
 
 namespace ProjectAddIn3
 {
@@ -85,7 +86,7 @@ namespace ProjectAddIn3
             // environmentUrlLbl
             // 
             this.environmentUrlLbl.AutoSize = true;
-            this.environmentUrlLbl.Location = new System.Drawing.Point(353, 339);
+            this.environmentUrlLbl.Location = new System.Drawing.Point(250, 339);
             this.environmentUrlLbl.Name = "environmentUrlLbl";
             this.environmentUrlLbl.Text = ConfigurationManager.AppSettings["MobideoEnvironmentUrl"];
             this.environmentUrlLbl.Size = new System.Drawing.Size(0, 20);

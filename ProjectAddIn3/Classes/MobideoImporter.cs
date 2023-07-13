@@ -94,20 +94,25 @@ namespace ProjectAddIn3.Classes
             {
                 var currentSubProject = subProject.SubProjectLegacyObject;
                 var currentSubProjectPath = currentSubProject.Path;
-                application.FileOpenEx(currentSubProjectPath);
-                application.FilterClear();
-                var newProjectFilePath = string.Format("{0}\\{1}.{2}", tempFolderPath, Guid.NewGuid().ToString(), "mpp");
-                application.FileSaveAs(newProjectFilePath);
-                using (FileStream fileStream = new FileStream(newProjectFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                using (FileStream fileStream = new FileStream(currentSubProjectPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 {
                     
-                    var memoryStream = new MemoryStream();
-                    fileStream.CopyTo(memoryStream);
-                    subProjectFiles.Add(new Tuple<string, Stream>(currentSubProjectPath, memoryStream));
+                    var newFilePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + "." + "temp");
+                    fileStream.ToFile(newFilePath);
+                    application.FileOpenEx(newFilePath);
+                    application.FilterClear();
+                    application.FileSaveAs(newFilePath);
+                    using (FileStream newFileStream = new FileStream(newFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                    {
+                        var memoryStream = new MemoryStream();
+                        newFileStream.CopyTo(memoryStream);
+                        subProjectFiles.Add(new Tuple<string, Stream>(currentSubProjectPath, memoryStream));
+
+                    }
+
                 }
 
                 application.ActiveWindow.Close();
-                filesToDelete.Add(newProjectFilePath);
             }
 
             return subProjectFiles;

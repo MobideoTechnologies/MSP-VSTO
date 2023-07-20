@@ -33,78 +33,67 @@ namespace ProjectAddIn3
         private void InitializeComponent()
         {
             this.userLabel = new System.Windows.Forms.Label();
-            this.userTextBox = new System.Windows.Forms.TextBox();
             this.PasswordLabel = new System.Windows.Forms.Label();
-            this.PasswordTextBox = new System.Windows.Forms.TextBox();
-            this.LoginBtn = new System.Windows.Forms.Button();
             this.environmentUrlLbl = new System.Windows.Forms.Label();
+            this.browser = new Mobideo.Studio.Editor.WebBrowser2();
+            this.labelMessage = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // userLabel
             // 
             this.userLabel.AutoSize = true;
-            this.userLabel.Location = new System.Drawing.Point(204, 88);
+            this.userLabel.Location = new System.Drawing.Point(136, 57);
+            this.userLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.userLabel.Name = "userLabel";
-            this.userLabel.Text = ConfigurationManager.AppSettings["UsernameLabelText"];
-            this.userLabel.Size = new System.Drawing.Size(0, 20);
+            this.userLabel.Size = new System.Drawing.Size(0, 13);
             this.userLabel.TabIndex = 0;
-            // 
-            // userTextBox
-            // 
-            this.userTextBox.Location = new System.Drawing.Point(330, 88);
-            this.userTextBox.Name = "userTextBox";
-            this.userTextBox.Size = new System.Drawing.Size(208, 26);
-            this.userTextBox.TabIndex = 1;
             // 
             // PasswordLabel
             // 
             this.PasswordLabel.AutoSize = true;
-            this.PasswordLabel.Location = new System.Drawing.Point(204, 156);
+            this.PasswordLabel.Location = new System.Drawing.Point(136, 101);
+            this.PasswordLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.PasswordLabel.Name = "PasswordLabel";
-             this.PasswordLabel.Text = ConfigurationManager.AppSettings["PasswordLabelText"];
-            this.PasswordLabel.Size = new System.Drawing.Size(0, 20);
+            this.PasswordLabel.Size = new System.Drawing.Size(0, 13);
             this.PasswordLabel.TabIndex = 2;
-            // 
-            // PasswordTextBox
-            // 
-            this.PasswordTextBox.Location = new System.Drawing.Point(330, 156);
-            this.PasswordTextBox.Name = "PasswordTextBox";
-            this.PasswordTextBox.PasswordChar = '*';
-            this.PasswordTextBox.Size = new System.Drawing.Size(208, 26);
-            this.PasswordTextBox.TabIndex = 3;
-            // 
-            // LoginBtn
-            // 
-            this.LoginBtn.Location = new System.Drawing.Point(218, 240);
-            this.LoginBtn.Name = "LoginBtn";
-            this.LoginBtn.Size = new System.Drawing.Size(320, 44);
-            this.LoginBtn.Text = ConfigurationManager.AppSettings["LoginBtnText"];
-            this.LoginBtn.TabIndex = 4;
-            this.LoginBtn.UseVisualStyleBackColor = true;
-            this.LoginBtn.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // environmentUrlLbl
             // 
             this.environmentUrlLbl.AutoSize = true;
-            this.environmentUrlLbl.Location = new System.Drawing.Point(250, 339);
+            this.environmentUrlLbl.Location = new System.Drawing.Point(167, 220);
+            this.environmentUrlLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.environmentUrlLbl.Name = "environmentUrlLbl";
-            this.environmentUrlLbl.Text = ConfigurationManager.AppSettings["MobideoEnvironmentUrl"];
-            this.environmentUrlLbl.Size = new System.Drawing.Size(0, 20);
+            this.environmentUrlLbl.Size = new System.Drawing.Size(0, 13);
             this.environmentUrlLbl.TabIndex = 5;
+            // 
+            // browser
+            // 
+
+            this.browser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.browser.Location = new System.Drawing.Point(0, 0);
+            this.browser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.browser.Name = "browser";
+            this.browser.Size = new System.Drawing.Size(854, 489);
+            this.browser.TabIndex = 0;
+            // 
+            // labelMessage
+            // 
+            this.labelMessage.Location = new System.Drawing.Point(0, 0);
+            this.labelMessage.Name = "labelMessage";
+            this.labelMessage.Size = new System.Drawing.Size(100, 23);
+            this.labelMessage.TabIndex = 0;
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(802, 583);
+            this.Controls.Add(this.browser);
             this.Controls.Add(this.environmentUrlLbl);
-            this.Controls.Add(this.LoginBtn);
-            this.Controls.Add(this.PasswordTextBox);
             this.Controls.Add(this.PasswordLabel);
-            this.Controls.Add(this.userTextBox);
             this.Controls.Add(this.userLabel);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LoginForm";
-            this.Text = ConfigurationManager.AppSettings["UpperTabText"];
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -113,10 +102,9 @@ namespace ProjectAddIn3
         #endregion
 
         private System.Windows.Forms.Label userLabel;
-        private System.Windows.Forms.TextBox userTextBox;
         private System.Windows.Forms.Label PasswordLabel;
-        private System.Windows.Forms.TextBox PasswordTextBox;
-        private System.Windows.Forms.Button LoginBtn;
         private System.Windows.Forms.Label environmentUrlLbl;
+        private Mobideo.Studio.Editor.WebBrowser2 browser;
+        private Label labelMessage;
     }
 }

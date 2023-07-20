@@ -20,6 +20,9 @@ using ProjectAddIn3.Classes;
 using Mobideo.Core;
 using System.Reflection;
 using System.ServiceModel.Security;
+using System.Drawing.Drawing2D;
+using ProjectAddIn3.Controls;
+using NLog.Filters;
 
 namespace Mobideo.Integration.ProjectVSTOAddIn
 {
@@ -37,29 +40,48 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
 
         private void exportBtn_Click(object sender, EventArgs e)
         {
-            importBtn.Enabled = false;
-            exportBtn.Enabled = false;
-            progressBar.Visible = true;
-            MspVSTOManager.Export(subProjectsList, progressBar).GetAwaiter().GetResult();
-            MspVSTOManager.UploadLogFile().GetAwaiter().GetResult();
-            ResetFormControls();
+            OnExport();
         }
 
+        private void OnExport()
+        {
+            if (exportBtn.Enabled)
+            {
+                exportBtn.Enabled = false;
+                importBtn.Enabled = false;
+                progressBar.Visible = true;
+                MspVSTOManager.Export(subProjectsList, progressBar).GetAwaiter().GetResult();
+                MspVSTOManager.UploadLogFile().GetAwaiter().GetResult();
+                ResetFormControls();
+            }
+        }
 
         private void importBtn_Click(object sender, EventArgs e)
         {
-            importBtn.Enabled = false;
-            exportBtn.Enabled = false;
-            progressBar.Visible = true;
-            MspVSTOManager.Import(subProjectsList, progressBar).GetAwaiter().GetResult();
-            MspVSTOManager.UploadLogFile().GetAwaiter().GetResult();
-            ResetFormControls();
+            OnImport();
+        }
+
+        private void OnImport()
+        {
+            if (importBtn.Enabled)
+            {
+                importBtn.Enabled = false;
+                exportBtn.Enabled = false;
+                importBtn.BackgroundColor = Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(151)))), ((int)(((byte)(204)))));
+                importBtnTxt.BackColor = Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(151)))), ((int)(((byte)(204)))));
+                progressBar.Visible = true;
+                MspVSTOManager.Import(subProjectsList, progressBar).GetAwaiter().GetResult();
+                MspVSTOManager.UploadLogFile().GetAwaiter().GetResult();
+                ResetFormControls();
+            }
         }
 
         private void ResetFormControls()
         {
-            importBtn.Enabled = true;
             exportBtn.Enabled = true;
+            importBtn.Enabled = true;
+            importBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(111)))), ((int)(((byte)(239)))));
+            importBtnTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(111)))), ((int)(((byte)(239)))));
             progressBar.Visible = false;
             progressBar.Value = 0;
         }
@@ -68,7 +90,7 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
         {
             if (subProjectsList.CheckedItems.Count > 1)
             {
-                importBtn.Enabled = true;
+                exportBtn.Enabled = true;
                 exportBtn.Enabled = true;
                 return;
 
@@ -77,7 +99,7 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             //Last Item is uncheked
             if (subProjectsList.CheckedItems.Count == 1 && e.NewValue == CheckState.Unchecked)
             {
-                importBtn.Enabled = false;
+                exportBtn.Enabled = false;
                 exportBtn.Enabled = false;
                 return;
             }
@@ -85,10 +107,30 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             //First Item is checked
             if (subProjectsList.CheckedItems.Count == 0 && e.NewValue == CheckState.Checked)
             {
-                importBtn.Enabled = true;
+                exportBtn.Enabled = true;
                 exportBtn.Enabled = true;
                 return;
             }
+        }
+
+        private void importBtn_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void progressBar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void customButton1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

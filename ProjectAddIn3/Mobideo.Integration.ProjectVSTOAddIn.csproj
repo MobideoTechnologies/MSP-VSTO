@@ -33,7 +33,7 @@
     <PublishUrl>C:\Users\tamir.MOBIDEOEX\OneDrive - Mobideo\Desktop\MSP VSTO Add-in\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <ApplicationVersion>1.0.0.1</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>false</UpdateEnabled>
     <UpdateInterval>0</UpdateInterval>
@@ -123,8 +123,14 @@
   -->
   <ItemGroup>
     <Reference Include="Accessibility" />
+    <Reference Include="AntiXssLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\AntiXssLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="Aspose.Tasks, Version=22.12.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
       <HintPath>..\packages\Aspose.Tasks.22.12.0\lib\net461\Aspose.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlSanitizationLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Configuration, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Configuration.5.0.0\lib\net461\Microsoft.Extensions.Configuration.dll</HintPath>
@@ -144,6 +150,9 @@
     <Reference Include="Microsoft.Extensions.Primitives, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Primitives.5.0.0\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=6.7.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.6.7.1\lib\net461\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.IdentityModel.Logging, Version=6.12.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.Logging.6.12.1\lib\net472\Microsoft.IdentityModel.Logging.dll</HintPath>
     </Reference>
@@ -153,12 +162,53 @@
     <Reference Include="Mobideo.Core, Version=1.0.40.12, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Mobideo.Core.1.0.40.12\lib\netstandard2.0\Mobideo.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Mobideo.Core.Data, Version=1.0.32.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mobideo.Core.Data.1.0.32\lib\netstandard2.0\Mobideo.Core.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Mobideo.Guide.Content, Version=20.2.2.33, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mobideo.Guide.Content.20.2.2.33\lib\net461\Mobideo.Guide.Content.dll</HintPath>
+    </Reference>
+    <Reference Include="Mobideo.Guide.GuideML, Version=3.17.14.31, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mobideo.Guide.GuideML.3.17.14.31\lib\net461\Mobideo.Guide.GuideML.dll</HintPath>
+    </Reference>
+    <Reference Include="Mobideo.Guide.Identity, Version=20.2.2.33, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mobideo.Guide.Identity.20.2.2.33\lib\net461\Mobideo.Guide.Identity.dll</HintPath>
+    </Reference>
+    <Reference Include="Mobideo.Guide.Services.Client, Version=20.2.2.71, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mobideo.Guide.Services.Client.20.2.2.71\lib\net461\Mobideo.Guide.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Mobideo.Guide.Services.Common, Version=20.2.2.40, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mobideo.Guide.Services.Common.20.2.2.40\lib\net461\Mobideo.Guide.Services.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Mobideo.Guide.Services.Contracts, Version=20.2.3.105, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mobideo.Guide.Services.Contracts.20.2.3.105\lib\net461\Mobideo.Guide.Services.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="Mobideo.Identity, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mobideo.Identity.1.0.10\lib\netstandard2.0\Mobideo.Identity.dll</HintPath>
+    </Reference>
+    <Reference Include="Mobideo.Packaging, Version=3.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mobideo.Packaging.3.0.5\lib\net461\Mobideo.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Mobideo.Repository.Client, Version=20.1.0.33, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mobideo.Repository.Client.20.1.0.33\lib\netstandard2.0\Mobideo.Repository.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Mobideo.Repository.Contracts, Version=20.1.0.31, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mobideo.Repository.Contracts.20.1.0.31\lib\netstandard2.0\Mobideo.Repository.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="Mobideo.Studio.Common, Version=19.2.1.17, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mobideo.Studio.Common.19.2.1.17\lib\net461\Mobideo.Studio.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Mobideo.Studio.Editor, Version=20.3.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mobideo.Studio.Editor.20.3.0.2\lib\net461\Mobideo.Studio.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.7.5\lib\net45\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="RestSharp, Version=106.11.7.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.106.11.7\lib\net452\RestSharp.dll</HintPath>
     </Reference>
@@ -166,13 +216,21 @@
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.ConfigurationManager, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Configuration.ConfigurationManager.7.0.0\lib\net462\System.Configuration.ConfigurationManager.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Data.SqlClient, Version=4.6.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SqlClient.4.8.0\lib\net461\System.Data.SqlClient.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=6.7.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.6.7.1\lib\net461\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
@@ -198,19 +256,24 @@
       <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsBase, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsBase.4.6.1055.0\lib\WindowsBase.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Office.Tools.v4.0.Framework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -271,6 +334,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CustomButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\CustomProgressBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CustomProgressBar.Designer.cs">
+      <DependentUpon>CustomProgressBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GraphicExtensions.cs" />
+    <Compile Include="Controls\SubProjectsCheckedListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\SubProjectsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SubProjectsControl.Designer.cs">
+      <DependentUpon>SubProjectsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -292,6 +374,9 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <EmbeddedResource Include="Controls\SubProjectsControl.resx">
+      <DependentUpon>SubProjectsControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -481,6 +566,10 @@
     </None>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\export icon.png" />
+    <EmbeddedResource Include="Resources\import icon.png" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -504,8 +593,8 @@
     <VisualStudio>
       <FlavorProperties GUID="{BAA0C2D2-18E2-41B9-852F-F413020CAA33}">
         <ProjectProperties HostName="MSProject" HostPackage="{29A7B9D7-A7F1-4328-8EF0-6B2D1A56B2C1}" OfficeVersion="15.0" VstxVersion="4.0" ApplicationType="MSProject" Language="cs" TemplatesPath="" DebugInfoExeName="#Software\Microsoft\Office\16.0\Project\InstallRoot\Path#winproj.exe" AddItemTemplatesGuid="{51063C3A-E220-4D12-8922-BDA915ACD783}" />
-        <Host Name="MSProject" GeneratedCodeNamespace="ProjectAddIn3" IconIndex="0">
-          <HostItem Name="ThisAddIn" Code="ThisAddIn.cs" CanonicalName="AddIn" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.cs" />
+        <Host Name="MSProject" GeneratedCodeNamespace="ProjectAddIn3" PublishedHash="69C324AB27932AA2FBF2B7EA72250886FF164DE6" IconIndex="0">
+          <HostItem Name="ThisAddIn" Code="ThisAddIn.cs" CanonicalName="AddIn" PublishedHash="12703BBE85815BAEEA4E2826E5EC42B916A72E07" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.cs" />
         </Host>
       </FlavorProperties>
     </VisualStudio>

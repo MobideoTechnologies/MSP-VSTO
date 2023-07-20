@@ -22,8 +22,8 @@ namespace ProjectAddIn3.Classes
                 var result = new Dictionary<string, object>();
                 var pageSize = int.Parse(ConfigurationManager.AppSettings["GetTaskPageSize"]);
                 var queryServicesClient = new GuideServicesQueryApiWebServiceClient("GuideServicesQueryApiWebService");
-                var mobideoUser = LoggedInUser.Username;
-                var userPassword = LoggedInUser.Password;
+                var mobideoUser = ConfigurationManager.AppSettings["MobideoUserName"];
+                var userPassword = ConfigurationManager.AppSettings["MobideoUserPassword"];
                 var userCredentials = new UserCredentials() { UserName = mobideoUser, Password = userPassword };
                 var tasksQuery = new TasksQuery { StartIndex = 0, PageSize = pageSize, ExtendedPropertyName = "Hash", ReturnPrecondition = false };
 

@@ -34,7 +34,7 @@ namespace ProjectAddIn3.Classes
         }
         public Task UploadFile(string path, Stream stream, string targetFolder, bool addTimeStamp = false)
         {
-            var token = ProvideToken();
+            var token = LoggedInUser.Token;
             var memoryStream = stream as MemoryStream;
 
             if (string.IsNullOrWhiteSpace(token))

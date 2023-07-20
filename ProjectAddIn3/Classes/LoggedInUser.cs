@@ -10,5 +10,6 @@ namespace ProjectAddIn3.Classes
     {
         public static string Username { get; set; }
         public static string Password { get; set; }
+        public static string Token { get; set; }
     }
 }

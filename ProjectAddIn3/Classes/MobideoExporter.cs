@@ -97,14 +97,31 @@ namespace ProjectAddIn3.Classes
                             mspFieldToUpdateMapping.Keys.ForEach(mspFieldToUpdate =>
                             {
                                 var mobideoProperty = mspFieldToUpdateMapping[mspFieldToUpdate];
-                                var exitingMobideoPropertyValue = taskInformation.GetPropertyValue(mobideoProperty)?.ToString();
-                                syncline.SetField(Globals.ThisAddIn.Application.FieldNameToFieldConstant(mspFieldToUpdate), exitingMobideoPropertyValue);
+                                var exitingMobideoPropertyValue = taskInformation.GetPropertyValue(mobideoProperty);
+                                var propertyInfo = taskInformation.GetType().GetProperty(mobideoProperty);
+                                if(exitingMobideoPropertyValue.IsNotNull() && (propertyInfo.PropertyType== typeof(DateTime) || propertyInfo.PropertyType == typeof(DateTime?)))
+                                {
+                                    exitingMobideoPropertyValue = ConvertUtcToCustomerTimeZone(exitingMobideoPropertyValue);
+                                }
+
+                                syncline.SetField(Globals.ThisAddIn.Application.FieldNameToFieldConstant(mspFieldToUpdate), exitingMobideoPropertyValue?.ToString());
                             });
                         }
                     }
                 }
             }
         }
+
+        private object ConvertUtcToCustomerTimeZone(object exitingMobideoPropertyValue)
+        {
+            var propertyDateTimeValue = exitingMobideoPropertyValue as DateTime?;
+            var customerTimeZone = ConfigurationManager.AppSettings["CustomerTimeZone"];
+            TimeZoneInfo timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(customerTimeZone);
+            DateTime convertedDateTime = TimeZoneInfo.ConvertTimeFromUtc(propertyDateTimeValue.Value, timeZoneInfo);
+            return convertedDateTime;
+        }
+
+   
 
         private string GetRowTaskReferenceId(Microsoft.Office.Interop.MSProject.Task syncline)
         {

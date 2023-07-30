@@ -30,10 +30,10 @@
     <DefineConstants>VSTO40</DefineConstants>
     <IsWebBootstrapper>False</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>C:\Users\tamir.MOBIDEOEX\OneDrive - Mobideo\Desktop\MSP VSTO Add-in\</PublishUrl>
+    <PublishUrl>C:\Users\JoshNirpaz\OneDrive - Mobideo\JoshBackups\Testing\WorkingArea\temp\integration\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.1</ApplicationVersion>
+    <ApplicationVersion>1.0.0.2</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>false</UpdateEnabled>
     <UpdateInterval>0</UpdateInterval>
@@ -582,7 +582,7 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>8DDEFE82B164E3A38030430462BE51F65C55DF3B</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>0299D890A34BE65C0041A2CAB89D3A7F18621CAE</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

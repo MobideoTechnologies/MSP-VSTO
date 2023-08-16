@@ -159,9 +159,9 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             this.unselectBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(111)))), ((int)(((byte)(239)))));
             this.unselectBtn.Location = new System.Drawing.Point(465, 96);
             this.unselectBtn.Name = "unselectBtn";
-            this.unselectBtn.Size = new System.Drawing.Size(115, 29);
+            this.unselectBtn.Size = new System.Drawing.Size(115, 28);
             this.unselectBtn.TabIndex = 19;
-            this.unselectBtn.Text = "➖  Unselect All";
+            this.unselectBtn.Text = "−  Unselect All";
             this.unselectBtn.UseVisualStyleBackColor = false;
             this.unselectBtn.Click += new System.EventHandler(this.unselectBtn_Click);
             // 

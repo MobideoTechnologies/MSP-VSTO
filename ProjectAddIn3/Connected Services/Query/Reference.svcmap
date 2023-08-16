@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="9c1c2ccd-1ecc-46b5-831a-87fd0e6cf1b0" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="e8883140-c20d-49e9-a804-3f4eac8a00e7" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,10 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="https://sdsrv12.mobideocloud.com/GuideServices/Api/query.asmx?WSDL" Protocol="http" SourceId="1" />
+    <MetadataSource Address="https://qac.mobideocloud.com/GuideServices/Api//query.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="query.wsdl" MetadataType="Wsdl" ID="66342493-4f59-4b7a-a2a3-20f6ce9cbea0" SourceId="1" SourceUrl="https://sdsrv12.mobideocloud.com/GuideServices/Api/query.asmx?WSDL" />
+    <MetadataFile FileName="query.wsdl" MetadataType="Wsdl" ID="df5b048e-467b-4a19-bf1f-5a92c4cb756a" SourceId="1" SourceUrl="https://qac.mobideocloud.com/GuideServices/Api/query.asmx?wsdl" />
+    <MetadataFile FileName="query.disco" MetadataType="Disco" ID="2eed4590-11e8-46f2-8a6b-5e5786358e92" SourceId="1" SourceUrl="https://qac.mobideocloud.com/GuideServices/Api/query.asmx?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

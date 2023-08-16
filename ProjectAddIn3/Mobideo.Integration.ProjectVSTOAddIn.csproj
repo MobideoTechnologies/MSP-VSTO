@@ -30,10 +30,10 @@
     <DefineConstants>VSTO40</DefineConstants>
     <IsWebBootstrapper>False</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>C:\Users\JoshNirpaz\OneDrive - Mobideo\JoshBackups\Testing\WorkingArea\temp\integration\</PublishUrl>
+    <PublishUrl>C:\Users\tamir.MOBIDEOEX\OneDrive - Mobideo\Desktop\MSP VSTO Add-in\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.2</ApplicationVersion>
+    <ApplicationVersion>1.0.0.3</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>false</UpdateEnabled>
     <UpdateInterval>0</UpdateInterval>
@@ -318,6 +318,7 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="Classes\ExportObject.cs" />
     <Compile Include="Classes\FileUploaderFactory.cs" />
     <Compile Include="Classes\CustomerFilesFileUploader.cs" />
     <Compile Include="Classes\LoggedInUser.cs" />
@@ -396,6 +397,9 @@
       <DependentUpon>Ribbon1.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="Connected Services\Query\ProjectAddIn3.Query.Employee.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\Query\ProjectAddIn3.Query.GetAllBooksResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -426,6 +430,12 @@
     <None Include="Connected Services\Query\ProjectAddIn3.Query.GetAttachmentsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\Query\ProjectAddIn3.Query.GetEmployeeByUserResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Query\ProjectAddIn3.Query.GetEmployeesByRolesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\Query\ProjectAddIn3.Query.GetEquipmentsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -445,6 +455,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\Query\ProjectAddIn3.Query.GetTaskReportModelResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Query\ProjectAddIn3.Query.GetTasksByReferenceIdsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\Query\ProjectAddIn3.Query.GetTasksExtendedPropertyResponse.datasource">
@@ -492,6 +505,9 @@
     <None Include="Connected Services\Query\ProjectAddIn3.Query.GuideServicesQueryResultsOfSite.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\Query\ProjectAddIn3.Query.GuideServicesQueryResultsOfTask.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\Query\ProjectAddIn3.Query.GuideServicesQueryResultsOfTaskComment.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -508,6 +524,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\Query\ProjectAddIn3.Query.GuideServicesQueryResultsOfTeam.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Query\ProjectAddIn3.Query.SearchEmployeesResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\Query\ProjectAddIn3.Query.TaskInformation.datasource">
@@ -554,6 +573,13 @@
     <WCFMetadataStorage Include="Connected Services\Query\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\export icon.png" />
+    <EmbeddedResource Include="Resources\import icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\Query\query.disco" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Connected Services\Query\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -565,10 +591,25 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Resources\export icon.png" />
-    <EmbeddedResource Include="Resources\import icon.png" />
+    <Content Include="Resources\btn-export.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\btn-import.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Export-btn-disabled.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Import-btn-disabled.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\validate-btn-disabled.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\validate-btn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -582,7 +623,7 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>0299D890A34BE65C0041A2CAB89D3A7F18621CAE</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>8DDEFE82B164E3A38030430462BE51F65C55DF3B</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

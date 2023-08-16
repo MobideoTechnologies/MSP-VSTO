@@ -177,6 +177,7 @@
           <s:enumeration value="Completed" />
           <s:enumeration value="Transferred" />
           <s:enumeration value="Viewed" />
+          <s:enumeration value="Active" />
           <s:enumeration value="PendingApproval" />
           <s:enumeration value="PendingCompleted" />
           <s:enumeration value="RollBack" />
@@ -261,6 +262,7 @@
           <s:element minOccurs="1" maxOccurs="1" name="UtcNow" nillable="true" type="s:dateTime" />
           <s:element minOccurs="1" maxOccurs="1" name="LastModified" nillable="true" type="s:dateTime" />
           <s:element minOccurs="1" maxOccurs="1" name="ProjectId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReportedProgress" nillable="true" type="s:int" />
         </s:sequence>
       </s:complexType>
       <s:element name="GetTaskReportModel">
@@ -656,7 +658,7 @@
       <s:complexType name="FilterGroupQuery">
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="1" name="referenceIds" type="tns:ArrayOfString" />
-          <s:element minOccurs="0" maxOccurs="1" name="ExtendedPropertyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExtendedPropertyNames" type="tns:ArrayOfString" />
         </s:sequence>
       </s:complexType>
       <s:element name="GetFilterGroupByReferenceIdsResponse">
@@ -1350,6 +1352,118 @@
           </s:extension>
         </s:complexContent>
       </s:complexType>
+      <s:element name="GetTasksByReferenceIds">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tasksQuery" type="tns:AllEntitiesQueryApi" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTasksByReferenceIdsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTasksByReferenceIdsResult" type="tns:GuideServicesQueryResultsOfTask" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GuideServicesQueryResultsOfTask">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UtcNow" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfTask" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsChunked" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkSize" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChunkStartIndex" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTask">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Task" nillable="true" type="tns:Task" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Task">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiEntityWithExtendedProperties">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="EquipmentReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Assignment" type="tns:TaskAssignementInformation" />
+              <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="StartTime" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="DueTime" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="FromTime" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ApprovingPrincipalReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FinalApprovingPrincipalReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CustomerReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Group" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Type" nillable="true" type="tns:TaskType" />
+              <s:element minOccurs="0" maxOccurs="1" name="PreconditionReferenceId" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Priority" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="SortOrder" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="OriginalTimeWindowEnd" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OriginalTimeWindowStart" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="Numerator" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Started" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="Completed" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="EmployeeReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TeamReferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Summary" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetEmployeesByRoles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="roleNames" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmployeesByRolesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmployeesByRolesResult" type="tns:GuideServicesQueryResultsOfEmployee" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmployeeByUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmployeeByUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmployeeByUserResult" type="tns:Employee" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchEmployees">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="employeeQuery" type="tns:EmployeeQuery" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EmployeeQuery">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:QueryApi">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ProjectReferenceIds" type="tns:ArrayOfString" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="SearchEmployeesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchEmployeesResult" type="tns:GuideServicesQueryResultsOfEmployee" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="GetTaskCommentsSoapIn">
@@ -1616,6 +1730,54 @@
   <wsdl:message name="GetAllManufacturersUserCredentials">
     <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
   </wsdl:message>
+  <wsdl:message name="GetTasksByReferenceIdsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTasksByReferenceIds" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksByReferenceIdsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTasksByReferenceIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksByReferenceIdsTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksByReferenceIdsUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeesByRolesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmployeesByRoles" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeesByRolesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmployeesByRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeesByRolesTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeesByRolesUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeeByUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmployeeByUser" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeeByUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmployeeByUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeeByUserTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeeByUserUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="SearchEmployeesSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchEmployees" />
+  </wsdl:message>
+  <wsdl:message name="SearchEmployeesSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchEmployeesResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchEmployeesTokenCredentials">
+    <wsdl:part name="TokenCredentials" element="tns:TokenCredentials" />
+  </wsdl:message>
+  <wsdl:message name="SearchEmployeesUserCredentials">
+    <wsdl:part name="UserCredentials" element="tns:UserCredentials" />
+  </wsdl:message>
   <wsdl:portType name="GuideServicesQueryApiWebService">
     <wsdl:operation name="GetTaskComments">
       <wsdl:input message="tns:GetTaskCommentsSoapIn" />
@@ -1704,6 +1866,22 @@
     <wsdl:operation name="GetAllManufacturers">
       <wsdl:input message="tns:GetAllManufacturersSoapIn" />
       <wsdl:output message="tns:GetAllManufacturersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksByReferenceIds">
+      <wsdl:input message="tns:GetTasksByReferenceIdsSoapIn" />
+      <wsdl:output message="tns:GetTasksByReferenceIdsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeesByRoles">
+      <wsdl:input message="tns:GetEmployeesByRolesSoapIn" />
+      <wsdl:output message="tns:GetEmployeesByRolesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeByUser">
+      <wsdl:input message="tns:GetEmployeeByUserSoapIn" />
+      <wsdl:output message="tns:GetEmployeeByUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchEmployees">
+      <wsdl:input message="tns:SearchEmployeesSoapIn" />
+      <wsdl:output message="tns:SearchEmployeesSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="GuideServicesQueryApiWebService" type="tns:GuideServicesQueryApiWebService">
@@ -1945,6 +2123,50 @@
         <soap:body use="literal" />
         <soap:header message="tns:GetAllManufacturersTokenCredentials" part="TokenCredentials" use="literal" />
         <soap:header message="tns:GetAllManufacturersUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksByReferenceIds">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetTasksByReferenceIds" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTasksByReferenceIdsTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetTasksByReferenceIdsUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeesByRoles">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetEmployeesByRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEmployeesByRolesTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetEmployeesByRolesUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeByUser">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/GetEmployeeByUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEmployeeByUserTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:GetEmployeeByUserUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchEmployees">
+      <soap:operation soapAction="http://www.mobideo.com/Guide/Api/SearchEmployees" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SearchEmployeesTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap:header message="tns:SearchEmployeesUserCredentials" part="UserCredentials" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
@@ -2195,13 +2417,57 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetTasksByReferenceIds">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetTasksByReferenceIds" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTasksByReferenceIdsTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetTasksByReferenceIdsUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeesByRoles">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetEmployeesByRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEmployeesByRolesTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetEmployeesByRolesUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeByUser">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/GetEmployeeByUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEmployeeByUserTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:GetEmployeeByUserUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchEmployees">
+      <soap12:operation soapAction="http://www.mobideo.com/Guide/Api/SearchEmployees" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SearchEmployeesTokenCredentials" part="TokenCredentials" use="literal" />
+        <soap12:header message="tns:SearchEmployeesUserCredentials" part="UserCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="GuideServicesQueryApiWebService">
     <wsdl:port name="GuideServicesQueryApiWebService" binding="tns:GuideServicesQueryApiWebService">
-      <soap:address location="https://sdsrv12.mobideocloud.com/GuideServices/Api/query.asmx" />
+      <soap:address location="https://qac.mobideocloud.com/GuideServices/Api/query.asmx" />
     </wsdl:port>
     <wsdl:port name="GuideServicesQueryApiWebService1" binding="tns:GuideServicesQueryApiWebService1">
-      <soap12:address location="https://sdsrv12.mobideocloud.com/GuideServices/Api/query.asmx" />
+      <soap12:address location="https://qac.mobideocloud.com/GuideServices/Api/query.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

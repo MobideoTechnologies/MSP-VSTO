@@ -9,6 +9,6 @@ namespace ProjectAddIn3.Interfaces
 {
     public interface IMobideoExporter
     {
-        Task ExportDataFromMobideoToMsp(IEnumerable<SubProjectWrapper> selectedSubProjects, object exportProgressBar);
+        Task ExportDataFromMobideoToMsp(IEnumerable<SubProjectWrapper> selectedSubProjects);
     }
 }

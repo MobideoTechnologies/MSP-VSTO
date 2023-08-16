@@ -19,20 +19,14 @@ namespace ProjectAddIn3.Classes
 {
     public class MobideoExporter : IMobideoExporter
     {
-        public async Task ExportDataFromMobideoToMsp(IEnumerable<SubProjectWrapper> selectedSubProjects, object exportProgressBar)
+        public async Task ExportDataFromMobideoToMsp(IEnumerable<SubProjectWrapper> selectedSubProjects)
         {
             try
             {
                 Logger.Info("*** Start export data from mobideo");
-                var progressBar = exportProgressBar as ProgressBar;
-                progressBar.Maximum = 100;
-                progressBar.Value = 30;
                 var projectTaskReferenceIds = GetProjectTasksReferenceIds(selectedSubProjects);
-                progressBar.Value = 60;
                 var projectMobideoTasks = await GetProjectTasksFromMobideo(projectTaskReferenceIds);
-                progressBar.Value = 90;
                 UpdateMspRecords(selectedSubProjects, projectMobideoTasks);
-                progressBar.Value = 100;
                 Logger.Info("*** Done export data from mobideo");
 
             }
@@ -57,7 +51,7 @@ namespace ProjectAddIn3.Classes
                 var currentSubProject = subProject.SubProjectLegacyObject.SourceProject;
                 foreach (Microsoft.Office.Interop.MSProject.Task syncline in currentSubProject.Tasks)
                 {
-                    if (syncline.OutlineLevel == int.Parse(ConfigurationManager.AppSettings["TaskOutlineLevel"]))
+                    if (syncline.OutlineLevel >= int.Parse(ConfigurationManager.AppSettings["MinTaskOutlineLevel"]))
                     {
                         var rowTaskReferenceId = GetRowTaskReferenceId(syncline).ToUpper().Trim();
                         if (!projectTaskReferenceIds.Contains(rowTaskReferenceId))
@@ -88,12 +82,12 @@ namespace ProjectAddIn3.Classes
                 var currentSubProject = subProject.SubProjectLegacyObject.SourceProject;
                 foreach (Microsoft.Office.Interop.MSProject.Task syncline in currentSubProject.Tasks)
                 {
-                    if (syncline.OutlineLevel == int.Parse(ConfigurationManager.AppSettings["TaskOutlineLevel"]))
+                    if (syncline.OutlineLevel >= int.Parse(ConfigurationManager.AppSettings["MinTaskOutlineLevel"]) && !bool.Parse(syncline.Summary?.ToString()))
                     {
                         string rowTaskReferenceIdUpper = GetRowTaskReferenceId(syncline).ToUpper().Trim();
                         if (projectMobideoTasks.ContainsKey(rowTaskReferenceIdUpper))
                         {
-                            var taskInformation = projectMobideoTasks[rowTaskReferenceIdUpper] as TaskInformation;
+                            var taskInformation = projectMobideoTasks[rowTaskReferenceIdUpper] as ExportObject;
                             mspFieldToUpdateMapping.Keys.ForEach(mspFieldToUpdate =>
                             {
                                 var mobideoProperty = mspFieldToUpdateMapping[mspFieldToUpdate];

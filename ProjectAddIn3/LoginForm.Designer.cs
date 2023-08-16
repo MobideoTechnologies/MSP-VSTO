@@ -68,12 +68,11 @@ namespace ProjectAddIn3
             // 
             // browser
             // 
-
             this.browser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.browser.Location = new System.Drawing.Point(0, 0);
             this.browser.MinimumSize = new System.Drawing.Size(20, 20);
             this.browser.Name = "browser";
-            this.browser.Size = new System.Drawing.Size(854, 489);
+            this.browser.Size = new System.Drawing.Size(877, 811);
             this.browser.TabIndex = 0;
             // 
             // labelMessage
@@ -87,13 +86,16 @@ namespace ProjectAddIn3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(802, 583);
+            this.ClientSize = new System.Drawing.Size(877, 811);
             this.Controls.Add(this.browser);
             this.Controls.Add(this.environmentUrlLbl);
             this.Controls.Add(this.PasswordLabel);
             this.Controls.Add(this.userLabel);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LoginForm";
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Mobideo Bazan MSP Integration";
             this.ResumeLayout(false);
             this.PerformLayout();
 

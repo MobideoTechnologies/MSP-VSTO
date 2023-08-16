@@ -9,6 +9,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ProjectAddIn3.Classes
 {
@@ -25,19 +26,35 @@ namespace ProjectAddIn3.Classes
                 var mobideoUser = ConfigurationManager.AppSettings["MobideoUserName"];
                 var userPassword = ConfigurationManager.AppSettings["MobideoUserPassword"];
                 var userCredentials = new UserCredentials() { UserName = mobideoUser, Password = userPassword };
-                var tasksQuery = new TasksQuery { StartIndex = 0, PageSize = pageSize, ExtendedPropertyName = "Hash", ReturnPrecondition = false };
+                var getTasksByReferenceIdsQuery = new AllEntitiesQueryApi { StartIndex = 0, PageSize = pageSize };
+                var getTasksExtendedPropertyQuery = new TasksQuery { StartIndex = 0, PageSize = pageSize, ExtendedPropertyName = "Hash", ReturnPrecondition = false };
 
                 for (int i = 0; i < taskReferneceIds.Count(); i += pageSize)
                 {
                     var currentTaskReferenceIds = taskReferneceIds.Skip(i).Take(pageSize).ToArray();
-                    tasksQuery.ReferenceIds = currentTaskReferenceIds;
-                    var getTasksExtendedPropertyResponse = queryServicesClient.GetTasksExtendedProperty(new TokenCredentials(), userCredentials, tasksQuery);
-                    getTasksExtendedPropertyResponse.Items?.ForEach(item =>
+                    getTasksByReferenceIdsQuery.ReferenceIds = currentTaskReferenceIds;
+                    getTasksExtendedPropertyQuery.ReferenceIds = currentTaskReferenceIds;
+                    var getTasksByReferenceIdsResponse = queryServicesClient.GetTasksByReferenceIds(new TokenCredentials(), userCredentials, getTasksByReferenceIdsQuery);
+                    var getTasksExtendedPropertyDictionary = GetTasksExtendedPropertyDictionary(queryServicesClient, userCredentials, getTasksExtendedPropertyQuery);
+                    getTasksByReferenceIdsResponse.Items?.ForEach(item =>
                     {
-                        var taskReferenceIdUpper = item.TaskInformation?.ReferenceId?.ToUpper().Trim();
+                        var taskReferenceIdUpper = item?.ReferenceId?.ToUpper().Trim();
                         if (!result.ContainsKey(taskReferenceIdUpper))
                         {
-                            result.Add(taskReferenceIdUpper, item.TaskInformation);
+                            if (getTasksExtendedPropertyDictionary.ContainsKey(taskReferenceIdUpper))
+                            {
+                                var taskInformationObject= getTasksExtendedPropertyDictionary[taskReferenceIdUpper];
+                                var exportObject = new ExportObject()
+                                {
+                                    Started = item.Started,
+                                    Completed = item.Completed,
+                                    TaskProgressStatus = taskInformationObject.TaskProgressStatus,
+                                    ReportedProgress= item.ReportedProgress
+                                };
+
+                                result.Add(taskReferenceIdUpper, exportObject);
+
+                            }
                         }
                     });
 
@@ -45,7 +62,7 @@ namespace ProjectAddIn3.Classes
                 }
 
                 Logger.Info("*** Done loading all tasks from mobideo");
-                return Task.FromResult(result);
+                return System.Threading.Tasks.Task.FromResult(result);
 
             }
             catch(Exception ex)
@@ -55,5 +72,24 @@ namespace ProjectAddIn3.Classes
             }
  
         }
+
+        private static Dictionary<string, TaskInformation> GetTasksExtendedPropertyDictionary(GuideServicesQueryApiWebServiceClient queryServicesClient, UserCredentials userCredentials, TasksQuery getTasksExtendedPropertyQuery)
+        {
+            var getTasksExtendedPropertyResponse = queryServicesClient.GetTasksExtendedProperty(new TokenCredentials(), userCredentials, getTasksExtendedPropertyQuery);
+            var getTaskExtendedPropertyTasks = new Dictionary<string, TaskInformation>();
+            getTasksExtendedPropertyResponse.Items?.ForEach(item =>
+            {
+                if (item.TaskInformation.IsNotNull())
+                {
+                    if (!string.IsNullOrWhiteSpace(item.TaskInformation.ReferenceId) && !getTaskExtendedPropertyTasks.ContainsKey(item.TaskInformation.ReferenceId.ToUpper().Trim()))
+                    {
+                        getTaskExtendedPropertyTasks.Add(item.TaskInformation.ReferenceId.ToUpper().Trim(), item.TaskInformation);
+                    }
+                }
+
+            });
+            return getTaskExtendedPropertyTasks;
+        }
+
     }
 }

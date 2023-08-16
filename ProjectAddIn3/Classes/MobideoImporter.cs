@@ -23,26 +23,25 @@ namespace ProjectAddIn3.Classes
 {
     public class MobideoImporter : IMobideoImporter
     {
-        public async Task ImportFilesToMobideo(IEnumerable<SubProjectWrapper> selectedSubProjects, object importProgressBar)
+        public async Task<Tuple<int, int>> ImportFilesToMobideo(IEnumerable<SubProjectWrapper> selectedSubProjects,  bool validateOnly=false)
         {
             Logger.Info("*** Start import files to mobideo");
+            int successfullFiles = 0;
+            int failedFiles = 0;
             var subProjectsFiles = CreateSubProjectFiles(selectedSubProjects, out var filesToDelete);
-            var importProgress = importProgressBar as ProgressBar;
-            importProgress.Visible = true;
-            importProgress.Maximum = 120;
             bool hasErrorOccured = false;
             var errorMessage = new StringBuilder();
-            importProgress.Value = 20;
             int fileRelativePercentage = (1 / subProjectsFiles.Count) * 100;
             foreach(var subProjectFile in subProjectsFiles)
             {
                 try
                 {
                     Logger.Info("*** Uploading file {0} to customer files", subProjectFile.Item1);
-                    await UploadFileToMobideo(subProjectFile.Item1, subProjectFile.Item2);
+                    await UploadFileToMobideo(subProjectFile.Item1, subProjectFile.Item2, validateOnly);
                     subProjectFile.Item2.Close();
                     subProjectFile.Item2.Dispose();
                     Logger.Info("*** Done Uploading file {0} to customer files", subProjectFile.Item1);
+                    successfullFiles++;
                 }
                 catch(Exception exception)
                 {
@@ -50,17 +49,16 @@ namespace ProjectAddIn3.Classes
                     Logger.Error(exception, fileErrorMessage, subProjectFile.Item1);
                     hasErrorOccured = true;
                     errorMessage.AppendLine(fileErrorMessage);
+                    failedFiles++;
                 }
                 finally
                 {
-                    importProgress.Value += fileRelativePercentage;
                     Thread.Sleep(2000);
                 }
 
             }
 
             //filesToDelete.ForEach(file => File.Delete(file));
-            importProgress.Visible= false;
 
             if (hasErrorOccured)
             {
@@ -68,13 +66,15 @@ namespace ProjectAddIn3.Classes
             }
 
             Logger.Info("*** Done import all files to mobideo");
+            return new Tuple<int, int>(successfullFiles, failedFiles);
 
         }
 
-        private async Task UploadFileToMobideo(string filePath, Stream stream)
+        private async Task UploadFileToMobideo(string filePath, Stream stream, bool validateOnly = false)
         {
             IFileUploader mobideoFileUploader = FileUploaderFactory.CreateFileUploader();
-            await mobideoFileUploader.UploadFile(filePath, stream, ConfigurationManager.AppSettings["CustomerFilesUploadFolderName"]);
+            var customerFilesUploadFolderName = validateOnly ? ConfigurationManager.AppSettings["CustomerFilesValidationFolderName"] : ConfigurationManager.AppSettings["CustomerFilesImportFolderName"];
+            await mobideoFileUploader.UploadFile(filePath, stream, customerFilesUploadFolderName);
         }
 
         private List<Tuple<string,Stream>> CreateSubProjectFiles(IEnumerable<SubProjectWrapper> selectedSubProjects, out List<string> filesToDelete)

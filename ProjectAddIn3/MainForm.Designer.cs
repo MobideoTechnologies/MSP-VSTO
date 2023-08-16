@@ -90,7 +90,7 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             this.exportBtnTxt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.exportBtnTxt.Font = new System.Drawing.Font("TT Commons", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exportBtnTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(111)))), ((int)(((byte)(239)))));
-            this.exportBtnTxt.Location = new System.Drawing.Point(359, 354);
+            this.exportBtnTxt.Location = new System.Drawing.Point(351, 348);
             this.exportBtnTxt.Name = "exportBtnTxt";
             this.exportBtnTxt.Size = new System.Drawing.Size(137, 18);
             this.exportBtnTxt.TabIndex = 11;
@@ -105,7 +105,7 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             this.importBtnTxt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.importBtnTxt.Font = new System.Drawing.Font("TT Commons", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.importBtnTxt.ForeColor = System.Drawing.SystemColors.Window;
-            this.importBtnTxt.Location = new System.Drawing.Point(568, 354);
+            this.importBtnTxt.Location = new System.Drawing.Point(568, 348);
             this.importBtnTxt.Margin = new System.Windows.Forms.Padding(0);
             this.importBtnTxt.Name = "importBtnTxt";
             this.importBtnTxt.Size = new System.Drawing.Size(143, 18);
@@ -121,12 +121,12 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             this.validateTextBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.validateTextBox.Font = new System.Drawing.Font("TT Commons", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.validateTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(131)))), ((int)(((byte)(134)))));
-            this.validateTextBox.Location = new System.Drawing.Point(156, 352);
+            this.validateTextBox.Location = new System.Drawing.Point(147, 348);
             this.validateTextBox.Name = "validateTextBox";
-            this.validateTextBox.Size = new System.Drawing.Size(120, 19);
+            this.validateTextBox.Size = new System.Drawing.Size(86, 19);
             this.validateTextBox.TabIndex = 17;
             this.validateTextBox.TabStop = false;
-            this.validateTextBox.Text = "Validate Input Files";
+            this.validateTextBox.Text = "Validate Files";
             this.validateTextBox.Click += new System.EventHandler(this.validateBtn_Click);
             // 
             // selectAllBtn
@@ -208,9 +208,9 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             // 
             this.importPicBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.importPicBox.Image = ((System.Drawing.Image)(resources.GetObject("importPicBox.Image")));
-            this.importPicBox.Location = new System.Drawing.Point(529, 340);
+            this.importPicBox.Location = new System.Drawing.Point(529, 338);
             this.importPicBox.Name = "importPicBox";
-            this.importPicBox.Size = new System.Drawing.Size(193, 41);
+            this.importPicBox.Size = new System.Drawing.Size(193, 36);
             this.importPicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.importPicBox.TabIndex = 22;
             this.importPicBox.TabStop = false;
@@ -220,9 +220,9 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             // 
             this.exportPicBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.exportPicBox.Image = ((System.Drawing.Image)(resources.GetObject("exportPicBox.Image")));
-            this.exportPicBox.Location = new System.Drawing.Point(323, 340);
+            this.exportPicBox.Location = new System.Drawing.Point(312, 338);
             this.exportPicBox.Name = "exportPicBox";
-            this.exportPicBox.Size = new System.Drawing.Size(180, 41);
+            this.exportPicBox.Size = new System.Drawing.Size(187, 37);
             this.exportPicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.exportPicBox.TabIndex = 23;
             this.exportPicBox.TabStop = false;
@@ -232,9 +232,9 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             // 
             this.validatePicBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.validatePicBox.Image = ((System.Drawing.Image)(resources.GetObject("validatePicBox.Image")));
-            this.validatePicBox.Location = new System.Drawing.Point(101, 340);
+            this.validatePicBox.Location = new System.Drawing.Point(101, 337);
             this.validatePicBox.Name = "validatePicBox";
-            this.validatePicBox.Size = new System.Drawing.Size(184, 41);
+            this.validatePicBox.Size = new System.Drawing.Size(141, 37);
             this.validatePicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.validatePicBox.TabIndex = 24;
             this.validatePicBox.TabStop = false;
@@ -279,7 +279,7 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             this.exportBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.exportBtn.Name = "exportBtn";
             this.exportBtn.Radius = 10;
-            this.exportBtn.Size = new System.Drawing.Size(176, 44);
+            this.exportBtn.Size = new System.Drawing.Size(176, 32);
             this.exportBtn.TabIndex = 10;
             this.exportBtn.Click += new System.EventHandler(this.exportBtn_Click);
             // 

@@ -48,13 +48,12 @@ namespace ProjectAddIn3.Classes
             return Task.CompletedTask;
         }
 
-        public async Task Export(object subProjectsListBox, object exportProgressBar)
+        public async Task Export(object subProjectsListBox)
         {
             try
             {
               var selectedSubProjects = GetSelectedSubProjects(subProjectsListBox);
-              await MobideoExporter.ExportDataFromMobideoToMsp(selectedSubProjects, exportProgressBar);
-              MessageBox.Show(ConfigurationManager.AppSettings["ExportCompletedText"]);
+              await MobideoExporter.ExportDataFromMobideoToMsp(selectedSubProjects);
             }
             catch (System.Exception exception)
             {
@@ -67,19 +66,20 @@ namespace ProjectAddIn3.Classes
         }
 
 
-        public async Task Import(object subProjectsListBox, object importProgressBar)
+        public async Task<Tuple<int,int>> Import(object subProjectsListBox, bool validateOnly=false)
         {
             try
             {
                 var selectedSubProjects = GetSelectedSubProjects(subProjectsListBox);
-                await MobideoImporter.ImportFilesToMobideo(selectedSubProjects, importProgressBar);
-                MessageBox.Show(ConfigurationManager.AppSettings["ImportCompletedText"]);
+                var uploadedFiles = await MobideoImporter.ImportFilesToMobideo(selectedSubProjects, validateOnly);
+                return uploadedFiles;
             }
             catch(System.Exception exception)
             {
                 var errorMessage = string.Format("An error occured during VSTO import for {0}\n: {1}", ConfigurationManager.AppSettings["MobideoEnvironmentUrl"], exception.Message);
                 Logger.Error(exception, "An error occured during VSTO import");
                 Logger.Email(errorMessage);
+                return new Tuple<int, int>(0, 0);
             }
         }
 

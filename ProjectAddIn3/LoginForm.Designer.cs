@@ -42,7 +42,8 @@ namespace ProjectAddIn3
             // userLabel
             // 
             this.userLabel.AutoSize = true;
-            this.userLabel.Location = new System.Drawing.Point(204, 88);
+            this.userLabel.Location = new System.Drawing.Point(136, 57);
+            this.userLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.userLabel.Name = "userLabel";
             this.userLabel.Size = new System.Drawing.Size(0, 13);
             this.userLabel.TabIndex = 0;
@@ -50,7 +51,8 @@ namespace ProjectAddIn3
             // PasswordLabel
             // 
             this.PasswordLabel.AutoSize = true;
-            this.PasswordLabel.Location = new System.Drawing.Point(204, 155);
+            this.PasswordLabel.Location = new System.Drawing.Point(136, 101);
+            this.PasswordLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.PasswordLabel.Name = "PasswordLabel";
             this.PasswordLabel.Size = new System.Drawing.Size(0, 13);
             this.PasswordLabel.TabIndex = 2;
@@ -58,7 +60,8 @@ namespace ProjectAddIn3
             // environmentUrlLbl
             // 
             this.environmentUrlLbl.AutoSize = true;
-            this.environmentUrlLbl.Location = new System.Drawing.Point(250, 338);
+            this.environmentUrlLbl.Location = new System.Drawing.Point(167, 220);
+            this.environmentUrlLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.environmentUrlLbl.Name = "environmentUrlLbl";
             this.environmentUrlLbl.Size = new System.Drawing.Size(0, 13);
             this.environmentUrlLbl.TabIndex = 5;
@@ -67,10 +70,9 @@ namespace ProjectAddIn3
             // 
             this.browser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.browser.Location = new System.Drawing.Point(0, 0);
-            this.browser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.browser.MinimumSize = new System.Drawing.Size(30, 31);
+            this.browser.MinimumSize = new System.Drawing.Size(20, 20);
             this.browser.Name = "browser";
-            this.browser.Size = new System.Drawing.Size(1401, 1167);
+            this.browser.Size = new System.Drawing.Size(877, 811);
             this.browser.TabIndex = 0;
             // 
             // labelMessage
@@ -82,14 +84,18 @@ namespace ProjectAddIn3
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1401, 1167);
+            this.ClientSize = new System.Drawing.Size(877, 811);
             this.Controls.Add(this.browser);
             this.Controls.Add(this.environmentUrlLbl);
             this.Controls.Add(this.PasswordLabel);
             this.Controls.Add(this.userLabel);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LoginForm";
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Mobideo Bazan MSP Integration";
             this.ResumeLayout(false);
             this.PerformLayout();
 

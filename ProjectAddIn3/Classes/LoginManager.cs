@@ -18,12 +18,12 @@ namespace ProjectAddIn3.Classes
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 queryServicesClient.GetUtcNow(new TokenCredentials(), new UserCredentials() { UserName= username, Password = password });
-                return Task.FromResult(true);
+                return System.Threading.Tasks.Task.FromResult(true);
             }
             catch(Exception ex)
             {
                 Logger.Error(ex, "Login failed for user {0}", username);
-                return Task.FromResult(false);
+                return System.Threading.Tasks.Task.FromResult(false);
             }
 
 

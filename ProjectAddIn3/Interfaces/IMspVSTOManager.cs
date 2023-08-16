@@ -10,8 +10,8 @@ namespace ProjectAddIn3.Interfaces
     {
         Task<bool> Login(string username, string password);
         Task GetAllSubProjects(object subProjectsListBox);
-        Task Import(object subProjectsListBox, object importProgressBar);
-        Task Export(object subProjectsListBox, object exportProgressBar);
+        Task<Tuple<int,int>> Import(object subProjectsListBox, bool validateOnly = false);
+        Task Export(object subProjectsListBox);
         Task UploadLogFile();
 
 

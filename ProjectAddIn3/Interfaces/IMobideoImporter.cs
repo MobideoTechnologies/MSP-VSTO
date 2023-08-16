@@ -9,6 +9,6 @@ namespace ProjectAddIn3.Interfaces
 {
     public interface IMobideoImporter
     {
-        Task ImportFilesToMobideo(IEnumerable<SubProjectWrapper> selectedSubProjects, object importProgressBar);
+        Task<Tuple<int,int>> ImportFilesToMobideo(IEnumerable<SubProjectWrapper> selectedSubProjects, bool validateOnly = false);
     }
 }

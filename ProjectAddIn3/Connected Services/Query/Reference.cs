@@ -234,6 +234,46 @@ namespace ProjectAddIn3.Query {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.mobideo.com/Guide/Api/GetAllManufacturers", ReplyAction="*")]
         System.Threading.Tasks.Task<ProjectAddIn3.Query.GetAllManufacturersResponse> GetAllManufacturersAsync(ProjectAddIn3.Query.GetAllManufacturersRequest request);
+        
+        // CODEGEN: Generating message contract since message GetTasksByReferenceIdsRequest has headers
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.mobideo.com/Guide/Api/GetTasksByReferenceIds", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(QueryApi))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ApiEntity))]
+        ProjectAddIn3.Query.GetTasksByReferenceIdsResponse GetTasksByReferenceIds(ProjectAddIn3.Query.GetTasksByReferenceIdsRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.mobideo.com/Guide/Api/GetTasksByReferenceIds", ReplyAction="*")]
+        System.Threading.Tasks.Task<ProjectAddIn3.Query.GetTasksByReferenceIdsResponse> GetTasksByReferenceIdsAsync(ProjectAddIn3.Query.GetTasksByReferenceIdsRequest request);
+        
+        // CODEGEN: Generating message contract since message GetEmployeesByRolesRequest has headers
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.mobideo.com/Guide/Api/GetEmployeesByRoles", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(QueryApi))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ApiEntity))]
+        ProjectAddIn3.Query.GetEmployeesByRolesResponse GetEmployeesByRoles(ProjectAddIn3.Query.GetEmployeesByRolesRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.mobideo.com/Guide/Api/GetEmployeesByRoles", ReplyAction="*")]
+        System.Threading.Tasks.Task<ProjectAddIn3.Query.GetEmployeesByRolesResponse> GetEmployeesByRolesAsync(ProjectAddIn3.Query.GetEmployeesByRolesRequest request);
+        
+        // CODEGEN: Generating message contract since message GetEmployeeByUserRequest has headers
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.mobideo.com/Guide/Api/GetEmployeeByUser", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(QueryApi))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ApiEntity))]
+        ProjectAddIn3.Query.GetEmployeeByUserResponse GetEmployeeByUser(ProjectAddIn3.Query.GetEmployeeByUserRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.mobideo.com/Guide/Api/GetEmployeeByUser", ReplyAction="*")]
+        System.Threading.Tasks.Task<ProjectAddIn3.Query.GetEmployeeByUserResponse> GetEmployeeByUserAsync(ProjectAddIn3.Query.GetEmployeeByUserRequest request);
+        
+        // CODEGEN: Generating message contract since message SearchEmployeesRequest has headers
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.mobideo.com/Guide/Api/SearchEmployees", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(QueryApi))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ApiEntity))]
+        ProjectAddIn3.Query.SearchEmployeesResponse SearchEmployees(ProjectAddIn3.Query.SearchEmployeesRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.mobideo.com/Guide/Api/SearchEmployees", ReplyAction="*")]
+        System.Threading.Tasks.Task<ProjectAddIn3.Query.SearchEmployeesResponse> SearchEmployeesAsync(ProjectAddIn3.Query.SearchEmployeesRequest request);
     }
     
     /// <remarks/>
@@ -288,11 +328,11 @@ namespace ProjectAddIn3.Query {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.mobideo.com/Guide/Api")]
-    public partial class GuideServicesQueryResultsOfEquipmentManufacturer : object, System.ComponentModel.INotifyPropertyChanged {
+    public partial class GuideServicesQueryResultsOfTask : object, System.ComponentModel.INotifyPropertyChanged {
         
         private System.DateTime utcNowField;
         
-        private EquipmentManufacturer[] itemsField;
+        private Task[] itemsField;
         
         private int totalCountField;
         
@@ -316,7 +356,7 @@ namespace ProjectAddIn3.Query {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Order=1)]
-        public EquipmentManufacturer[] Items {
+        public Task[] Items {
             get {
                 return this.itemsField;
             }
@@ -390,50 +430,358 @@ namespace ProjectAddIn3.Query {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.mobideo.com/Guide/Api")]
-    public partial class EquipmentManufacturer : ApiEntity {
+    public partial class Task : ApiEntityWithExtendedProperties {
         
-        private string nameField;
+        private string equipmentReferenceIdField;
+        
+        private TaskAssignementInformation assignmentField;
+        
+        private string commentsField;
+        
+        private string locationField;
+        
+        private System.Nullable<System.DateTime> startTimeField;
+        
+        private System.DateTime dueTimeField;
+        
+        private System.Nullable<System.DateTime> fromTimeField;
+        
+        private string descriptionField;
+        
+        private string approvingPrincipalReferenceIdField;
+        
+        private string finalApprovingPrincipalReferenceIdField;
+        
+        private string customerReferenceIdField;
+        
+        private string groupField;
+        
+        private System.Nullable<TaskType> typeField;
+        
+        private string preconditionReferenceIdField;
+        
+        private System.Nullable<int> priorityField;
+        
+        private System.Nullable<int> sortOrderField;
+        
+        private System.Nullable<System.DateTime> originalTimeWindowEndField;
+        
+        private System.Nullable<System.DateTime> originalTimeWindowStartField;
+        
+        private string numeratorField;
+        
+        private System.Nullable<System.DateTime> startedField;
+        
+        private System.Nullable<System.DateTime> completedField;
+        
+        private string employeeReferenceIdField;
+        
+        private string teamReferenceIdField;
+        
+        private string summaryField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public string Name {
+        public string EquipmentReferenceId {
             get {
-                return this.nameField;
+                return this.equipmentReferenceIdField;
             }
             set {
-                this.nameField = value;
-                this.RaisePropertyChanged("Name");
+                this.equipmentReferenceIdField = value;
+                this.RaisePropertyChanged("EquipmentReferenceId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public TaskAssignementInformation Assignment {
+            get {
+                return this.assignmentField;
+            }
+            set {
+                this.assignmentField = value;
+                this.RaisePropertyChanged("Assignment");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public string Comments {
+            get {
+                return this.commentsField;
+            }
+            set {
+                this.commentsField = value;
+                this.RaisePropertyChanged("Comments");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public string Location {
+            get {
+                return this.locationField;
+            }
+            set {
+                this.locationField = value;
+                this.RaisePropertyChanged("Location");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=4)]
+        public System.Nullable<System.DateTime> StartTime {
+            get {
+                return this.startTimeField;
+            }
+            set {
+                this.startTimeField = value;
+                this.RaisePropertyChanged("StartTime");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public System.DateTime DueTime {
+            get {
+                return this.dueTimeField;
+            }
+            set {
+                this.dueTimeField = value;
+                this.RaisePropertyChanged("DueTime");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=6)]
+        public System.Nullable<System.DateTime> FromTime {
+            get {
+                return this.fromTimeField;
+            }
+            set {
+                this.fromTimeField = value;
+                this.RaisePropertyChanged("FromTime");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public string Description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+                this.RaisePropertyChanged("Description");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public string ApprovingPrincipalReferenceId {
+            get {
+                return this.approvingPrincipalReferenceIdField;
+            }
+            set {
+                this.approvingPrincipalReferenceIdField = value;
+                this.RaisePropertyChanged("ApprovingPrincipalReferenceId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        public string FinalApprovingPrincipalReferenceId {
+            get {
+                return this.finalApprovingPrincipalReferenceIdField;
+            }
+            set {
+                this.finalApprovingPrincipalReferenceIdField = value;
+                this.RaisePropertyChanged("FinalApprovingPrincipalReferenceId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        public string CustomerReferenceId {
+            get {
+                return this.customerReferenceIdField;
+            }
+            set {
+                this.customerReferenceIdField = value;
+                this.RaisePropertyChanged("CustomerReferenceId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=11)]
+        public string Group {
+            get {
+                return this.groupField;
+            }
+            set {
+                this.groupField = value;
+                this.RaisePropertyChanged("Group");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=12)]
+        public System.Nullable<TaskType> Type {
+            get {
+                return this.typeField;
+            }
+            set {
+                this.typeField = value;
+                this.RaisePropertyChanged("Type");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=13)]
+        public string PreconditionReferenceId {
+            get {
+                return this.preconditionReferenceIdField;
+            }
+            set {
+                this.preconditionReferenceIdField = value;
+                this.RaisePropertyChanged("PreconditionReferenceId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=14)]
+        public System.Nullable<int> Priority {
+            get {
+                return this.priorityField;
+            }
+            set {
+                this.priorityField = value;
+                this.RaisePropertyChanged("Priority");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=15)]
+        public System.Nullable<int> SortOrder {
+            get {
+                return this.sortOrderField;
+            }
+            set {
+                this.sortOrderField = value;
+                this.RaisePropertyChanged("SortOrder");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=16)]
+        public System.Nullable<System.DateTime> OriginalTimeWindowEnd {
+            get {
+                return this.originalTimeWindowEndField;
+            }
+            set {
+                this.originalTimeWindowEndField = value;
+                this.RaisePropertyChanged("OriginalTimeWindowEnd");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=17)]
+        public System.Nullable<System.DateTime> OriginalTimeWindowStart {
+            get {
+                return this.originalTimeWindowStartField;
+            }
+            set {
+                this.originalTimeWindowStartField = value;
+                this.RaisePropertyChanged("OriginalTimeWindowStart");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=18)]
+        public string Numerator {
+            get {
+                return this.numeratorField;
+            }
+            set {
+                this.numeratorField = value;
+                this.RaisePropertyChanged("Numerator");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=19)]
+        public System.Nullable<System.DateTime> Started {
+            get {
+                return this.startedField;
+            }
+            set {
+                this.startedField = value;
+                this.RaisePropertyChanged("Started");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=20)]
+        public System.Nullable<System.DateTime> Completed {
+            get {
+                return this.completedField;
+            }
+            set {
+                this.completedField = value;
+                this.RaisePropertyChanged("Completed");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=21)]
+        public string EmployeeReferenceId {
+            get {
+                return this.employeeReferenceIdField;
+            }
+            set {
+                this.employeeReferenceIdField = value;
+                this.RaisePropertyChanged("EmployeeReferenceId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=22)]
+        public string TeamReferenceId {
+            get {
+                return this.teamReferenceIdField;
+            }
+            set {
+                this.teamReferenceIdField = value;
+                this.RaisePropertyChanged("TeamReferenceId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=23)]
+        public string Summary {
+            get {
+                return this.summaryField;
+            }
+            set {
+                this.summaryField = value;
+                this.RaisePropertyChanged("Summary");
             }
         }
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(EquipmentManufacturer))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Project))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(ApiEntityWithExtendedProperties))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(EquipmentType))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(TaskPlan))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Site))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(ApiResourceWithExtendedProperties))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Team))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Employee))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Equipment))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(FilterGroupTask))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(TaskPrecondition))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.mobideo.com/Guide/Api")]
-    public partial class ApiEntity : object, System.ComponentModel.INotifyPropertyChanged {
+    public partial class TaskAssignementInformation : object, System.ComponentModel.INotifyPropertyChanged {
         
         private string referenceIdField;
         
-        private System.Nullable<System.DateTime> utcNowField;
+        private string nameField;
         
-        private System.Nullable<System.DateTime> lastModifiedField;
-        
-        private System.Nullable<int> projectIdField;
+        private string assignmentTypeField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -448,38 +796,26 @@ namespace ProjectAddIn3.Query {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=1)]
-        public System.Nullable<System.DateTime> UtcNow {
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string Name {
             get {
-                return this.utcNowField;
+                return this.nameField;
             }
             set {
-                this.utcNowField = value;
-                this.RaisePropertyChanged("UtcNow");
+                this.nameField = value;
+                this.RaisePropertyChanged("Name");
             }
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=2)]
-        public System.Nullable<System.DateTime> LastModified {
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public string AssignmentType {
             get {
-                return this.lastModifiedField;
+                return this.assignmentTypeField;
             }
             set {
-                this.lastModifiedField = value;
-                this.RaisePropertyChanged("LastModified");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=3)]
-        public System.Nullable<int> ProjectId {
-            get {
-                return this.projectIdField;
-            }
-            set {
-                this.projectIdField = value;
-                this.RaisePropertyChanged("ProjectId");
+                this.assignmentTypeField = value;
+                this.RaisePropertyChanged("AssignmentType");
             }
         }
         
@@ -496,55 +832,21 @@ namespace ProjectAddIn3.Query {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.mobideo.com/Guide/Api")]
-    public partial class Project : ApiEntity {
-        
-        private string nameField;
-        
-        private System.Nullable<System.DateTime> startTimeField;
-        
-        private System.Nullable<System.DateTime> endTimeField;
+    public enum TaskType {
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public string Name {
-            get {
-                return this.nameField;
-            }
-            set {
-                this.nameField = value;
-                this.RaisePropertyChanged("Name");
-            }
-        }
+        Regular,
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=1)]
-        public System.Nullable<System.DateTime> StartTime {
-            get {
-                return this.startTimeField;
-            }
-            set {
-                this.startTimeField = value;
-                this.RaisePropertyChanged("StartTime");
-            }
-        }
+        IssueReport,
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=2)]
-        public System.Nullable<System.DateTime> EndTime {
-            get {
-                return this.endTimeField;
-            }
-            set {
-                this.endTimeField = value;
-                this.RaisePropertyChanged("EndTime");
-            }
-        }
+        AdHoc,
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Task))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(EquipmentType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TaskPlan))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Site))]
@@ -1053,6 +1355,288 @@ namespace ProjectAddIn3.Query {
         
         /// <remarks/>
         Archived,
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(EquipmentManufacturer))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Project))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(ApiEntityWithExtendedProperties))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Task))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(EquipmentType))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(TaskPlan))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Site))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(ApiResourceWithExtendedProperties))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Team))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Employee))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Equipment))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(FilterGroupTask))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(TaskPrecondition))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.mobideo.com/Guide/Api")]
+    public partial class ApiEntity : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string referenceIdField;
+        
+        private System.Nullable<System.DateTime> utcNowField;
+        
+        private System.Nullable<System.DateTime> lastModifiedField;
+        
+        private System.Nullable<int> projectIdField;
+        
+        private System.Nullable<int> reportedProgressField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string ReferenceId {
+            get {
+                return this.referenceIdField;
+            }
+            set {
+                this.referenceIdField = value;
+                this.RaisePropertyChanged("ReferenceId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=1)]
+        public System.Nullable<System.DateTime> UtcNow {
+            get {
+                return this.utcNowField;
+            }
+            set {
+                this.utcNowField = value;
+                this.RaisePropertyChanged("UtcNow");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=2)]
+        public System.Nullable<System.DateTime> LastModified {
+            get {
+                return this.lastModifiedField;
+            }
+            set {
+                this.lastModifiedField = value;
+                this.RaisePropertyChanged("LastModified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=3)]
+        public System.Nullable<int> ProjectId {
+            get {
+                return this.projectIdField;
+            }
+            set {
+                this.projectIdField = value;
+                this.RaisePropertyChanged("ProjectId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=4)]
+        public System.Nullable<int> ReportedProgress {
+            get {
+                return this.reportedProgressField;
+            }
+            set {
+                this.reportedProgressField = value;
+                this.RaisePropertyChanged("ReportedProgress");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.mobideo.com/Guide/Api")]
+    public partial class EquipmentManufacturer : ApiEntity {
+        
+        private string nameField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+                this.RaisePropertyChanged("Name");
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.mobideo.com/Guide/Api")]
+    public partial class Project : ApiEntity {
+        
+        private string nameField;
+        
+        private System.Nullable<System.DateTime> startTimeField;
+        
+        private System.Nullable<System.DateTime> endTimeField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+                this.RaisePropertyChanged("Name");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=1)]
+        public System.Nullable<System.DateTime> StartTime {
+            get {
+                return this.startTimeField;
+            }
+            set {
+                this.startTimeField = value;
+                this.RaisePropertyChanged("StartTime");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=2)]
+        public System.Nullable<System.DateTime> EndTime {
+            get {
+                return this.endTimeField;
+            }
+            set {
+                this.endTimeField = value;
+                this.RaisePropertyChanged("EndTime");
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.mobideo.com/Guide/Api")]
+    public partial class TaskPrecondition : ApiEntity {
+        
+        private System.Nullable<int> actionNumberField;
+        
+        private System.Nullable<int> triggerField;
+        
+        private string contentDocumentIdField;
+        
+        private string contentBookNameField;
+        
+        private string taskReferenceIdField;
+        
+        private System.Nullable<int> parentIdField;
+        
+        private string taskProgressStatusField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=0)]
+        public System.Nullable<int> ActionNumber {
+            get {
+                return this.actionNumberField;
+            }
+            set {
+                this.actionNumberField = value;
+                this.RaisePropertyChanged("ActionNumber");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=1)]
+        public System.Nullable<int> Trigger {
+            get {
+                return this.triggerField;
+            }
+            set {
+                this.triggerField = value;
+                this.RaisePropertyChanged("Trigger");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public string ContentDocumentId {
+            get {
+                return this.contentDocumentIdField;
+            }
+            set {
+                this.contentDocumentIdField = value;
+                this.RaisePropertyChanged("ContentDocumentId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public string ContentBookName {
+            get {
+                return this.contentBookNameField;
+            }
+            set {
+                this.contentBookNameField = value;
+                this.RaisePropertyChanged("ContentBookName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public string TaskReferenceId {
+            get {
+                return this.taskReferenceIdField;
+            }
+            set {
+                this.taskReferenceIdField = value;
+                this.RaisePropertyChanged("TaskReferenceId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=5)]
+        public System.Nullable<int> ParentId {
+            get {
+                return this.parentIdField;
+            }
+            set {
+                this.parentIdField = value;
+                this.RaisePropertyChanged("ParentId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public string TaskProgressStatus {
+            get {
+                return this.taskProgressStatusField;
+            }
+            set {
+                this.taskProgressStatusField = value;
+                this.RaisePropertyChanged("TaskProgressStatus");
+            }
+        }
     }
     
     /// <remarks/>
@@ -2664,103 +3248,98 @@ namespace ProjectAddIn3.Query {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.mobideo.com/Guide/Api")]
-    public partial class TaskPrecondition : ApiEntity {
+    public partial class GuideServicesQueryResultsOfEquipmentManufacturer : object, System.ComponentModel.INotifyPropertyChanged {
         
-        private System.Nullable<int> actionNumberField;
+        private System.DateTime utcNowField;
         
-        private System.Nullable<int> triggerField;
+        private EquipmentManufacturer[] itemsField;
         
-        private string contentDocumentIdField;
+        private int totalCountField;
         
-        private string contentBookNameField;
+        private bool isChunkedField;
         
-        private string taskReferenceIdField;
+        private int chunkSizeField;
         
-        private System.Nullable<int> parentIdField;
-        
-        private string taskProgressStatusField;
+        private int chunkStartIndexField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=0)]
-        public System.Nullable<int> ActionNumber {
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public System.DateTime UtcNow {
             get {
-                return this.actionNumberField;
+                return this.utcNowField;
             }
             set {
-                this.actionNumberField = value;
-                this.RaisePropertyChanged("ActionNumber");
+                this.utcNowField = value;
+                this.RaisePropertyChanged("UtcNow");
             }
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=1)]
-        public System.Nullable<int> Trigger {
+        [System.Xml.Serialization.XmlArrayAttribute(Order=1)]
+        public EquipmentManufacturer[] Items {
             get {
-                return this.triggerField;
+                return this.itemsField;
             }
             set {
-                this.triggerField = value;
-                this.RaisePropertyChanged("Trigger");
+                this.itemsField = value;
+                this.RaisePropertyChanged("Items");
             }
         }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public string ContentDocumentId {
+        public int TotalCount {
             get {
-                return this.contentDocumentIdField;
+                return this.totalCountField;
             }
             set {
-                this.contentDocumentIdField = value;
-                this.RaisePropertyChanged("ContentDocumentId");
+                this.totalCountField = value;
+                this.RaisePropertyChanged("TotalCount");
             }
         }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public string ContentBookName {
+        public bool IsChunked {
             get {
-                return this.contentBookNameField;
+                return this.isChunkedField;
             }
             set {
-                this.contentBookNameField = value;
-                this.RaisePropertyChanged("ContentBookName");
+                this.isChunkedField = value;
+                this.RaisePropertyChanged("IsChunked");
             }
         }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=4)]
-        public string TaskReferenceId {
+        public int ChunkSize {
             get {
-                return this.taskReferenceIdField;
+                return this.chunkSizeField;
             }
             set {
-                this.taskReferenceIdField = value;
-                this.RaisePropertyChanged("TaskReferenceId");
+                this.chunkSizeField = value;
+                this.RaisePropertyChanged("ChunkSize");
             }
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=5)]
-        public System.Nullable<int> ParentId {
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public int ChunkStartIndex {
             get {
-                return this.parentIdField;
+                return this.chunkStartIndexField;
             }
             set {
-                this.parentIdField = value;
-                this.RaisePropertyChanged("ParentId");
+                this.chunkStartIndexField = value;
+                this.RaisePropertyChanged("ChunkStartIndex");
             }
         }
         
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
-        public string TaskProgressStatus {
-            get {
-                return this.taskProgressStatusField;
-            }
-            set {
-                this.taskProgressStatusField = value;
-                this.RaisePropertyChanged("TaskProgressStatus");
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -4115,7 +4694,7 @@ namespace ProjectAddIn3.Query {
         
         private string[] referenceIdsField;
         
-        private string extendedPropertyNameField;
+        private string[] extendedPropertyNamesField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Order=0)]
@@ -4130,14 +4709,14 @@ namespace ProjectAddIn3.Query {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public string ExtendedPropertyName {
+        [System.Xml.Serialization.XmlArrayAttribute(Order=1)]
+        public string[] ExtendedPropertyNames {
             get {
-                return this.extendedPropertyNameField;
+                return this.extendedPropertyNamesField;
             }
             set {
-                this.extendedPropertyNameField = value;
-                this.RaisePropertyChanged("ExtendedPropertyName");
+                this.extendedPropertyNamesField = value;
+                this.RaisePropertyChanged("ExtendedPropertyNames");
             }
         }
         
@@ -4764,66 +5343,6 @@ namespace ProjectAddIn3.Query {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.mobideo.com/Guide/Api")]
-    public partial class TaskAssignementInformation : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        private string referenceIdField;
-        
-        private string nameField;
-        
-        private string assignmentTypeField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public string ReferenceId {
-            get {
-                return this.referenceIdField;
-            }
-            set {
-                this.referenceIdField = value;
-                this.RaisePropertyChanged("ReferenceId");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public string Name {
-            get {
-                return this.nameField;
-            }
-            set {
-                this.nameField = value;
-                this.RaisePropertyChanged("Name");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public string AssignmentType {
-            get {
-                return this.assignmentTypeField;
-            }
-            set {
-                this.assignmentTypeField = value;
-                this.RaisePropertyChanged("AssignmentType");
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
-    [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.mobideo.com/Guide/Api")]
     public enum EntityPriority {
         
@@ -4899,6 +5418,9 @@ namespace ProjectAddIn3.Query {
         
         /// <remarks/>
         Viewed,
+        
+        /// <remarks/>
+        Active,
         
         /// <remarks/>
         PendingApproval,
@@ -5764,6 +6286,7 @@ namespace ProjectAddIn3.Query {
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(EmployeeQuery))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(AllEntitiesQueryApi))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(EquipmentQuery))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TasksQuery))]
@@ -5837,6 +6360,29 @@ namespace ProjectAddIn3.Query {
             System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.mobideo.com/Guide/Api")]
+    public partial class EmployeeQuery : QueryApi {
+        
+        private string[] projectReferenceIdsField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=0)]
+        public string[] ProjectReferenceIds {
+            get {
+                return this.projectReferenceIdsField;
+            }
+            set {
+                this.projectReferenceIdsField = value;
+                this.RaisePropertyChanged("ProjectReferenceIds");
             }
         }
     }
@@ -6357,22 +6903,6 @@ namespace ProjectAddIn3.Query {
                 this.RaisePropertyChanged("ReturnPrecondition");
             }
         }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.mobideo.com/Guide/Api")]
-    public enum TaskType {
-        
-        /// <remarks/>
-        Regular,
-        
-        /// <remarks/>
-        IssueReport,
-        
-        /// <remarks/>
-        AdHoc,
     }
     
     /// <remarks/>
@@ -8560,6 +9090,174 @@ namespace ProjectAddIn3.Query {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetTasksByReferenceIds", WrapperNamespace="http://www.mobideo.com/Guide/Api", IsWrapped=true)]
+    public partial class GetTasksByReferenceIdsRequest {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.mobideo.com/Guide/Api")]
+        public ProjectAddIn3.Query.TokenCredentials TokenCredentials;
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.mobideo.com/Guide/Api")]
+        public ProjectAddIn3.Query.UserCredentials UserCredentials;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.mobideo.com/Guide/Api", Order=0)]
+        public ProjectAddIn3.Query.AllEntitiesQueryApi tasksQuery;
+        
+        public GetTasksByReferenceIdsRequest() {
+        }
+        
+        public GetTasksByReferenceIdsRequest(ProjectAddIn3.Query.TokenCredentials TokenCredentials, ProjectAddIn3.Query.UserCredentials UserCredentials, ProjectAddIn3.Query.AllEntitiesQueryApi tasksQuery) {
+            this.TokenCredentials = TokenCredentials;
+            this.UserCredentials = UserCredentials;
+            this.tasksQuery = tasksQuery;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetTasksByReferenceIdsResponse", WrapperNamespace="http://www.mobideo.com/Guide/Api", IsWrapped=true)]
+    public partial class GetTasksByReferenceIdsResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.mobideo.com/Guide/Api", Order=0)]
+        public ProjectAddIn3.Query.GuideServicesQueryResultsOfTask GetTasksByReferenceIdsResult;
+        
+        public GetTasksByReferenceIdsResponse() {
+        }
+        
+        public GetTasksByReferenceIdsResponse(ProjectAddIn3.Query.GuideServicesQueryResultsOfTask GetTasksByReferenceIdsResult) {
+            this.GetTasksByReferenceIdsResult = GetTasksByReferenceIdsResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetEmployeesByRoles", WrapperNamespace="http://www.mobideo.com/Guide/Api", IsWrapped=true)]
+    public partial class GetEmployeesByRolesRequest {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.mobideo.com/Guide/Api")]
+        public ProjectAddIn3.Query.TokenCredentials TokenCredentials;
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.mobideo.com/Guide/Api")]
+        public ProjectAddIn3.Query.UserCredentials UserCredentials;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.mobideo.com/Guide/Api", Order=0)]
+        public string[] roleNames;
+        
+        public GetEmployeesByRolesRequest() {
+        }
+        
+        public GetEmployeesByRolesRequest(ProjectAddIn3.Query.TokenCredentials TokenCredentials, ProjectAddIn3.Query.UserCredentials UserCredentials, string[] roleNames) {
+            this.TokenCredentials = TokenCredentials;
+            this.UserCredentials = UserCredentials;
+            this.roleNames = roleNames;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetEmployeesByRolesResponse", WrapperNamespace="http://www.mobideo.com/Guide/Api", IsWrapped=true)]
+    public partial class GetEmployeesByRolesResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.mobideo.com/Guide/Api", Order=0)]
+        public ProjectAddIn3.Query.GuideServicesQueryResultsOfEmployee GetEmployeesByRolesResult;
+        
+        public GetEmployeesByRolesResponse() {
+        }
+        
+        public GetEmployeesByRolesResponse(ProjectAddIn3.Query.GuideServicesQueryResultsOfEmployee GetEmployeesByRolesResult) {
+            this.GetEmployeesByRolesResult = GetEmployeesByRolesResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetEmployeeByUser", WrapperNamespace="http://www.mobideo.com/Guide/Api", IsWrapped=true)]
+    public partial class GetEmployeeByUserRequest {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.mobideo.com/Guide/Api")]
+        public ProjectAddIn3.Query.TokenCredentials TokenCredentials;
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.mobideo.com/Guide/Api")]
+        public ProjectAddIn3.Query.UserCredentials UserCredentials;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.mobideo.com/Guide/Api", Order=0)]
+        public string username;
+        
+        public GetEmployeeByUserRequest() {
+        }
+        
+        public GetEmployeeByUserRequest(ProjectAddIn3.Query.TokenCredentials TokenCredentials, ProjectAddIn3.Query.UserCredentials UserCredentials, string username) {
+            this.TokenCredentials = TokenCredentials;
+            this.UserCredentials = UserCredentials;
+            this.username = username;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetEmployeeByUserResponse", WrapperNamespace="http://www.mobideo.com/Guide/Api", IsWrapped=true)]
+    public partial class GetEmployeeByUserResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.mobideo.com/Guide/Api", Order=0)]
+        public ProjectAddIn3.Query.Employee GetEmployeeByUserResult;
+        
+        public GetEmployeeByUserResponse() {
+        }
+        
+        public GetEmployeeByUserResponse(ProjectAddIn3.Query.Employee GetEmployeeByUserResult) {
+            this.GetEmployeeByUserResult = GetEmployeeByUserResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="SearchEmployees", WrapperNamespace="http://www.mobideo.com/Guide/Api", IsWrapped=true)]
+    public partial class SearchEmployeesRequest {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.mobideo.com/Guide/Api")]
+        public ProjectAddIn3.Query.TokenCredentials TokenCredentials;
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.mobideo.com/Guide/Api")]
+        public ProjectAddIn3.Query.UserCredentials UserCredentials;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.mobideo.com/Guide/Api", Order=0)]
+        public ProjectAddIn3.Query.EmployeeQuery employeeQuery;
+        
+        public SearchEmployeesRequest() {
+        }
+        
+        public SearchEmployeesRequest(ProjectAddIn3.Query.TokenCredentials TokenCredentials, ProjectAddIn3.Query.UserCredentials UserCredentials, ProjectAddIn3.Query.EmployeeQuery employeeQuery) {
+            this.TokenCredentials = TokenCredentials;
+            this.UserCredentials = UserCredentials;
+            this.employeeQuery = employeeQuery;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="SearchEmployeesResponse", WrapperNamespace="http://www.mobideo.com/Guide/Api", IsWrapped=true)]
+    public partial class SearchEmployeesResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.mobideo.com/Guide/Api", Order=0)]
+        public ProjectAddIn3.Query.GuideServicesQueryResultsOfEmployee SearchEmployeesResult;
+        
+        public SearchEmployeesResponse() {
+        }
+        
+        public SearchEmployeesResponse(ProjectAddIn3.Query.GuideServicesQueryResultsOfEmployee SearchEmployeesResult) {
+            this.SearchEmployeesResult = SearchEmployeesResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface GuideServicesQueryApiWebServiceChannel : ProjectAddIn3.Query.GuideServicesQueryApiWebService, System.ServiceModel.IClientChannel {
     }
@@ -9173,6 +9871,114 @@ namespace ProjectAddIn3.Query {
             inValue.TokenCredentials = TokenCredentials;
             inValue.UserCredentials = UserCredentials;
             return ((ProjectAddIn3.Query.GuideServicesQueryApiWebService)(this)).GetAllManufacturersAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        ProjectAddIn3.Query.GetTasksByReferenceIdsResponse ProjectAddIn3.Query.GuideServicesQueryApiWebService.GetTasksByReferenceIds(ProjectAddIn3.Query.GetTasksByReferenceIdsRequest request) {
+            return base.Channel.GetTasksByReferenceIds(request);
+        }
+        
+        public ProjectAddIn3.Query.GuideServicesQueryResultsOfTask GetTasksByReferenceIds(ProjectAddIn3.Query.TokenCredentials TokenCredentials, ProjectAddIn3.Query.UserCredentials UserCredentials, ProjectAddIn3.Query.AllEntitiesQueryApi tasksQuery) {
+            ProjectAddIn3.Query.GetTasksByReferenceIdsRequest inValue = new ProjectAddIn3.Query.GetTasksByReferenceIdsRequest();
+            inValue.TokenCredentials = TokenCredentials;
+            inValue.UserCredentials = UserCredentials;
+            inValue.tasksQuery = tasksQuery;
+            ProjectAddIn3.Query.GetTasksByReferenceIdsResponse retVal = ((ProjectAddIn3.Query.GuideServicesQueryApiWebService)(this)).GetTasksByReferenceIds(inValue);
+            return retVal.GetTasksByReferenceIdsResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<ProjectAddIn3.Query.GetTasksByReferenceIdsResponse> ProjectAddIn3.Query.GuideServicesQueryApiWebService.GetTasksByReferenceIdsAsync(ProjectAddIn3.Query.GetTasksByReferenceIdsRequest request) {
+            return base.Channel.GetTasksByReferenceIdsAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<ProjectAddIn3.Query.GetTasksByReferenceIdsResponse> GetTasksByReferenceIdsAsync(ProjectAddIn3.Query.TokenCredentials TokenCredentials, ProjectAddIn3.Query.UserCredentials UserCredentials, ProjectAddIn3.Query.AllEntitiesQueryApi tasksQuery) {
+            ProjectAddIn3.Query.GetTasksByReferenceIdsRequest inValue = new ProjectAddIn3.Query.GetTasksByReferenceIdsRequest();
+            inValue.TokenCredentials = TokenCredentials;
+            inValue.UserCredentials = UserCredentials;
+            inValue.tasksQuery = tasksQuery;
+            return ((ProjectAddIn3.Query.GuideServicesQueryApiWebService)(this)).GetTasksByReferenceIdsAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        ProjectAddIn3.Query.GetEmployeesByRolesResponse ProjectAddIn3.Query.GuideServicesQueryApiWebService.GetEmployeesByRoles(ProjectAddIn3.Query.GetEmployeesByRolesRequest request) {
+            return base.Channel.GetEmployeesByRoles(request);
+        }
+        
+        public ProjectAddIn3.Query.GuideServicesQueryResultsOfEmployee GetEmployeesByRoles(ProjectAddIn3.Query.TokenCredentials TokenCredentials, ProjectAddIn3.Query.UserCredentials UserCredentials, string[] roleNames) {
+            ProjectAddIn3.Query.GetEmployeesByRolesRequest inValue = new ProjectAddIn3.Query.GetEmployeesByRolesRequest();
+            inValue.TokenCredentials = TokenCredentials;
+            inValue.UserCredentials = UserCredentials;
+            inValue.roleNames = roleNames;
+            ProjectAddIn3.Query.GetEmployeesByRolesResponse retVal = ((ProjectAddIn3.Query.GuideServicesQueryApiWebService)(this)).GetEmployeesByRoles(inValue);
+            return retVal.GetEmployeesByRolesResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<ProjectAddIn3.Query.GetEmployeesByRolesResponse> ProjectAddIn3.Query.GuideServicesQueryApiWebService.GetEmployeesByRolesAsync(ProjectAddIn3.Query.GetEmployeesByRolesRequest request) {
+            return base.Channel.GetEmployeesByRolesAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<ProjectAddIn3.Query.GetEmployeesByRolesResponse> GetEmployeesByRolesAsync(ProjectAddIn3.Query.TokenCredentials TokenCredentials, ProjectAddIn3.Query.UserCredentials UserCredentials, string[] roleNames) {
+            ProjectAddIn3.Query.GetEmployeesByRolesRequest inValue = new ProjectAddIn3.Query.GetEmployeesByRolesRequest();
+            inValue.TokenCredentials = TokenCredentials;
+            inValue.UserCredentials = UserCredentials;
+            inValue.roleNames = roleNames;
+            return ((ProjectAddIn3.Query.GuideServicesQueryApiWebService)(this)).GetEmployeesByRolesAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        ProjectAddIn3.Query.GetEmployeeByUserResponse ProjectAddIn3.Query.GuideServicesQueryApiWebService.GetEmployeeByUser(ProjectAddIn3.Query.GetEmployeeByUserRequest request) {
+            return base.Channel.GetEmployeeByUser(request);
+        }
+        
+        public ProjectAddIn3.Query.Employee GetEmployeeByUser(ProjectAddIn3.Query.TokenCredentials TokenCredentials, ProjectAddIn3.Query.UserCredentials UserCredentials, string username) {
+            ProjectAddIn3.Query.GetEmployeeByUserRequest inValue = new ProjectAddIn3.Query.GetEmployeeByUserRequest();
+            inValue.TokenCredentials = TokenCredentials;
+            inValue.UserCredentials = UserCredentials;
+            inValue.username = username;
+            ProjectAddIn3.Query.GetEmployeeByUserResponse retVal = ((ProjectAddIn3.Query.GuideServicesQueryApiWebService)(this)).GetEmployeeByUser(inValue);
+            return retVal.GetEmployeeByUserResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<ProjectAddIn3.Query.GetEmployeeByUserResponse> ProjectAddIn3.Query.GuideServicesQueryApiWebService.GetEmployeeByUserAsync(ProjectAddIn3.Query.GetEmployeeByUserRequest request) {
+            return base.Channel.GetEmployeeByUserAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<ProjectAddIn3.Query.GetEmployeeByUserResponse> GetEmployeeByUserAsync(ProjectAddIn3.Query.TokenCredentials TokenCredentials, ProjectAddIn3.Query.UserCredentials UserCredentials, string username) {
+            ProjectAddIn3.Query.GetEmployeeByUserRequest inValue = new ProjectAddIn3.Query.GetEmployeeByUserRequest();
+            inValue.TokenCredentials = TokenCredentials;
+            inValue.UserCredentials = UserCredentials;
+            inValue.username = username;
+            return ((ProjectAddIn3.Query.GuideServicesQueryApiWebService)(this)).GetEmployeeByUserAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        ProjectAddIn3.Query.SearchEmployeesResponse ProjectAddIn3.Query.GuideServicesQueryApiWebService.SearchEmployees(ProjectAddIn3.Query.SearchEmployeesRequest request) {
+            return base.Channel.SearchEmployees(request);
+        }
+        
+        public ProjectAddIn3.Query.GuideServicesQueryResultsOfEmployee SearchEmployees(ProjectAddIn3.Query.TokenCredentials TokenCredentials, ProjectAddIn3.Query.UserCredentials UserCredentials, ProjectAddIn3.Query.EmployeeQuery employeeQuery) {
+            ProjectAddIn3.Query.SearchEmployeesRequest inValue = new ProjectAddIn3.Query.SearchEmployeesRequest();
+            inValue.TokenCredentials = TokenCredentials;
+            inValue.UserCredentials = UserCredentials;
+            inValue.employeeQuery = employeeQuery;
+            ProjectAddIn3.Query.SearchEmployeesResponse retVal = ((ProjectAddIn3.Query.GuideServicesQueryApiWebService)(this)).SearchEmployees(inValue);
+            return retVal.SearchEmployeesResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<ProjectAddIn3.Query.SearchEmployeesResponse> ProjectAddIn3.Query.GuideServicesQueryApiWebService.SearchEmployeesAsync(ProjectAddIn3.Query.SearchEmployeesRequest request) {
+            return base.Channel.SearchEmployeesAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<ProjectAddIn3.Query.SearchEmployeesResponse> SearchEmployeesAsync(ProjectAddIn3.Query.TokenCredentials TokenCredentials, ProjectAddIn3.Query.UserCredentials UserCredentials, ProjectAddIn3.Query.EmployeeQuery employeeQuery) {
+            ProjectAddIn3.Query.SearchEmployeesRequest inValue = new ProjectAddIn3.Query.SearchEmployeesRequest();
+            inValue.TokenCredentials = TokenCredentials;
+            inValue.UserCredentials = UserCredentials;
+            inValue.employeeQuery = employeeQuery;
+            return ((ProjectAddIn3.Query.GuideServicesQueryApiWebService)(this)).SearchEmployeesAsync(inValue);
         }
     }
 }

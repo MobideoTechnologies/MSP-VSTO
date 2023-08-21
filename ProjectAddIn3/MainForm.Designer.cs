@@ -89,7 +89,7 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             this.exportBtnTxt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.exportBtnTxt.Font = new System.Drawing.Font("TT Commons", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exportBtnTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(111)))), ((int)(((byte)(239)))));
-            this.exportBtnTxt.Location = new System.Drawing.Point(605, 413);
+            this.exportBtnTxt.Location = new System.Drawing.Point(586, 413);
             this.exportBtnTxt.Name = "exportBtnTxt";
             this.exportBtnTxt.Size = new System.Drawing.Size(137, 18);
             this.exportBtnTxt.TabIndex = 11;
@@ -104,7 +104,7 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             this.importBtnTxt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.importBtnTxt.Font = new System.Drawing.Font("TT Commons", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.importBtnTxt.ForeColor = System.Drawing.SystemColors.Window;
-            this.importBtnTxt.Location = new System.Drawing.Point(832, 413);
+            this.importBtnTxt.Location = new System.Drawing.Point(821, 413);
             this.importBtnTxt.Margin = new System.Windows.Forms.Padding(0);
             this.importBtnTxt.Name = "importBtnTxt";
             this.importBtnTxt.Size = new System.Drawing.Size(143, 18);
@@ -120,7 +120,7 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             this.validateTextBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.validateTextBox.Font = new System.Drawing.Font("TT Commons", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.validateTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(131)))), ((int)(((byte)(134)))));
-            this.validateTextBox.Location = new System.Drawing.Point(167, 413);
+            this.validateTextBox.Location = new System.Drawing.Point(164, 413);
             this.validateTextBox.Name = "validateTextBox";
             this.validateTextBox.Size = new System.Drawing.Size(86, 19);
             this.validateTextBox.TabIndex = 17;
@@ -136,11 +136,11 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             this.selectAllBtn.FlatAppearance.BorderSize = 0;
             this.selectAllBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.selectAllBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.selectAllBtn.Font = new System.Drawing.Font("TT Commons", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectAllBtn.Font = new System.Drawing.Font("TT Commons", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectAllBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(111)))), ((int)(((byte)(239)))));
-            this.selectAllBtn.Location = new System.Drawing.Point(872, 97);
+            this.selectAllBtn.Location = new System.Drawing.Point(843, 96);
             this.selectAllBtn.Name = "selectAllBtn";
-            this.selectAllBtn.Size = new System.Drawing.Size(101, 28);
+            this.selectAllBtn.Size = new System.Drawing.Size(130, 28);
             this.selectAllBtn.TabIndex = 18;
             this.selectAllBtn.Text = " ＋ Select All";
             this.selectAllBtn.UseVisualStyleBackColor = false;
@@ -154,11 +154,11 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             this.unselectBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.unselectBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.unselectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.unselectBtn.Font = new System.Drawing.Font("TT Commons", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.unselectBtn.Font = new System.Drawing.Font("TT Commons", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.unselectBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(111)))), ((int)(((byte)(239)))));
-            this.unselectBtn.Location = new System.Drawing.Point(738, 96);
+            this.unselectBtn.Location = new System.Drawing.Point(695, 96);
             this.unselectBtn.Name = "unselectBtn";
-            this.unselectBtn.Size = new System.Drawing.Size(115, 28);
+            this.unselectBtn.Size = new System.Drawing.Size(142, 28);
             this.unselectBtn.TabIndex = 19;
             this.unselectBtn.Text = "−  Unselect All";
             this.unselectBtn.UseVisualStyleBackColor = false;
@@ -179,11 +179,11 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             // loadingTextBox
             // 
             this.loadingTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.loadingTextBox.Font = new System.Drawing.Font("TT Commons", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadingTextBox.Font = new System.Drawing.Font("TT Commons", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loadingTextBox.ForeColor = System.Drawing.Color.Black;
             this.loadingTextBox.Location = new System.Drawing.Point(449, 613);
             this.loadingTextBox.Name = "loadingTextBox";
-            this.loadingTextBox.Size = new System.Drawing.Size(237, 19);
+            this.loadingTextBox.Size = new System.Drawing.Size(237, 18);
             this.loadingTextBox.TabIndex = 21;
             this.loadingTextBox.Text = "Please wait while files are in process... ";
             this.loadingTextBox.Visible = false;
@@ -207,9 +207,9 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             // 
             this.importPicBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.importPicBox.Image = ((System.Drawing.Image)(resources.GetObject("importPicBox.Image")));
-            this.importPicBox.Location = new System.Drawing.Point(788, 403);
+            this.importPicBox.Location = new System.Drawing.Point(781, 403);
             this.importPicBox.Name = "importPicBox";
-            this.importPicBox.Size = new System.Drawing.Size(198, 36);
+            this.importPicBox.Size = new System.Drawing.Size(205, 36);
             this.importPicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.importPicBox.TabIndex = 22;
             this.importPicBox.TabStop = false;
@@ -219,9 +219,9 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             // 
             this.exportPicBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.exportPicBox.Image = ((System.Drawing.Image)(resources.GetObject("exportPicBox.Image")));
-            this.exportPicBox.Location = new System.Drawing.Point(559, 402);
+            this.exportPicBox.Location = new System.Drawing.Point(544, 402);
             this.exportPicBox.Name = "exportPicBox";
-            this.exportPicBox.Size = new System.Drawing.Size(198, 37);
+            this.exportPicBox.Size = new System.Drawing.Size(205, 37);
             this.exportPicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.exportPicBox.TabIndex = 23;
             this.exportPicBox.TabStop = false;
@@ -233,7 +233,7 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             this.validatePicBox.Image = ((System.Drawing.Image)(resources.GetObject("validatePicBox.Image")));
             this.validatePicBox.Location = new System.Drawing.Point(114, 402);
             this.validatePicBox.Name = "validatePicBox";
-            this.validatePicBox.Size = new System.Drawing.Size(157, 37);
+            this.validatePicBox.Size = new System.Drawing.Size(153, 37);
             this.validatePicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.validatePicBox.TabIndex = 24;
             this.validatePicBox.TabStop = false;

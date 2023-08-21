@@ -59,7 +59,7 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
         }
         private void OnExport()
         {
-            if (exportBtn.Enabled)
+            if (exportPicBox.Enabled)
             {
                 DisableControls();
                 exportService.RunWorkerAsync();
@@ -68,7 +68,7 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
 
         private void OnImport()
         {
-            if (importBtn.Enabled)
+            if (importPicBox.Enabled)
             {
                 DisableControls();
                 importService.RunWorkerAsync();
@@ -77,11 +77,9 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
 
         private void DisableControls()
         {
-            importBtn.Enabled = false;
-            exportBtn.Enabled = false;
-            validateBtn.Enabled = false;
             exportPicBox.Enabled = false;
             importPicBox.Enabled = false;
+            validatePicBox.Enabled = false;
             var resourcesFolder = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).LocalPath + "\\Resources";
             exportPicBox.Image = Image.FromFile(resourcesFolder + "\\Export-btn-disabled.png");
             importPicBox.Image = Image.FromFile(resourcesFolder + "\\Import-btn-disabled.png");
@@ -96,7 +94,7 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
 
         private void OnValidate()
         {
-            if (validateBtn.Enabled)
+            if (validatePicBox.Enabled)
             {
                 DisableControls();
                 validationService.RunWorkerAsync();
@@ -106,11 +104,9 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
 
         private void ResetFormControls()
         {
-            exportBtn.Enabled = true;
-            importBtn.Enabled = true;
-            validateBtn.Enabled = true;
             exportPicBox.Enabled = true;
             importPicBox.Enabled = true;
+            validatePicBox.Enabled = true;
             var resourcesFolder = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).LocalPath + "\\Resources";
             exportPicBox.Image = Image.FromFile(resourcesFolder + "\\btn-export.png");
             importPicBox.Image = Image.FromFile(resourcesFolder + "\\btn-import.png");
@@ -128,9 +124,9 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             subProjectsList.ClearSelected();
             if (subProjectsList.CheckedItems.Count > 1)
             {
-                exportBtn.Enabled = true;
-                importBtn.Enabled = true;
-                validateBtn.Enabled= true;
+                validatePicBox.Enabled = true;
+                importPicBox.Enabled = true;
+                exportPicBox.Enabled= true;
                 return;
 
             }
@@ -138,18 +134,18 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             //Last Item is uncheked
             if (subProjectsList.CheckedItems.Count == 1 && e.NewValue == CheckState.Unchecked)
             {
-                exportBtn.Enabled = false;
-                importBtn.Enabled = false;
-                validateBtn.Enabled = false;
+                validatePicBox.Enabled = false;
+                importPicBox.Enabled = false;
+                exportPicBox.Enabled = false;
                 return;
             }
 
             //First Item is checked
             if (subProjectsList.CheckedItems.Count == 0 && e.NewValue == CheckState.Checked)
             {
-                exportBtn.Enabled = true;
-                importBtn.Enabled = true;
-                validateBtn.Enabled = true;
+                validatePicBox.Enabled = true;
+                importPicBox.Enabled = true;
+                exportPicBox.Enabled = true;
                 return;
             }
         }

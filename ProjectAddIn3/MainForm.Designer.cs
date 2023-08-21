@@ -72,7 +72,7 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             this.subProjectsList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.subProjectsList.CheckOnClick = true;
             this.subProjectsList.DisplayMember = "FileName";
-            this.subProjectsList.Font = new System.Drawing.Font("TT Commons", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.subProjectsList.Font = new System.Drawing.Font("TT Commons", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.subProjectsList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(131)))), ((int)(((byte)(134)))));
             this.subProjectsList.FormattingEnabled = true;
             this.subProjectsList.Location = new System.Drawing.Point(136, 136);
@@ -87,11 +87,11 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             this.exportBtnTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(249)))), ((int)(((byte)(253)))));
             this.exportBtnTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.exportBtnTxt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.exportBtnTxt.Font = new System.Drawing.Font("TT Commons", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exportBtnTxt.Font = new System.Drawing.Font("TT Commons", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exportBtnTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(111)))), ((int)(((byte)(239)))));
-            this.exportBtnTxt.Location = new System.Drawing.Point(586, 413);
+            this.exportBtnTxt.Location = new System.Drawing.Point(595, 414);
             this.exportBtnTxt.Name = "exportBtnTxt";
-            this.exportBtnTxt.Size = new System.Drawing.Size(137, 18);
+            this.exportBtnTxt.Size = new System.Drawing.Size(137, 15);
             this.exportBtnTxt.TabIndex = 11;
             this.exportBtnTxt.TabStop = false;
             this.exportBtnTxt.Text = "Export data to project";
@@ -102,12 +102,12 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             this.importBtnTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(111)))), ((int)(((byte)(239)))));
             this.importBtnTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.importBtnTxt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.importBtnTxt.Font = new System.Drawing.Font("TT Commons", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.importBtnTxt.Font = new System.Drawing.Font("TT Commons", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.importBtnTxt.ForeColor = System.Drawing.SystemColors.Window;
-            this.importBtnTxt.Location = new System.Drawing.Point(821, 413);
+            this.importBtnTxt.Location = new System.Drawing.Point(831, 414);
             this.importBtnTxt.Margin = new System.Windows.Forms.Padding(0);
             this.importBtnTxt.Name = "importBtnTxt";
-            this.importBtnTxt.Size = new System.Drawing.Size(143, 18);
+            this.importBtnTxt.Size = new System.Drawing.Size(143, 15);
             this.importBtnTxt.TabIndex = 13;
             this.importBtnTxt.TabStop = false;
             this.importBtnTxt.Text = "Import data to Mobideo";
@@ -118,11 +118,11 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             this.validateTextBox.BackColor = System.Drawing.Color.White;
             this.validateTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.validateTextBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.validateTextBox.Font = new System.Drawing.Font("TT Commons", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.validateTextBox.Font = new System.Drawing.Font("TT Commons", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.validateTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(131)))), ((int)(((byte)(134)))));
-            this.validateTextBox.Location = new System.Drawing.Point(164, 413);
+            this.validateTextBox.Location = new System.Drawing.Point(167, 414);
             this.validateTextBox.Name = "validateTextBox";
-            this.validateTextBox.Size = new System.Drawing.Size(86, 19);
+            this.validateTextBox.Size = new System.Drawing.Size(86, 15);
             this.validateTextBox.TabIndex = 17;
             this.validateTextBox.TabStop = false;
             this.validateTextBox.Text = "Validate Files";
@@ -179,11 +179,11 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             // loadingTextBox
             // 
             this.loadingTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.loadingTextBox.Font = new System.Drawing.Font("TT Commons", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadingTextBox.Font = new System.Drawing.Font("TT Commons", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loadingTextBox.ForeColor = System.Drawing.Color.Black;
-            this.loadingTextBox.Location = new System.Drawing.Point(449, 613);
+            this.loadingTextBox.Location = new System.Drawing.Point(468, 613);
             this.loadingTextBox.Name = "loadingTextBox";
-            this.loadingTextBox.Size = new System.Drawing.Size(237, 18);
+            this.loadingTextBox.Size = new System.Drawing.Size(204, 15);
             this.loadingTextBox.TabIndex = 21;
             this.loadingTextBox.Text = "Please wait while files are in process... ";
             this.loadingTextBox.Visible = false;

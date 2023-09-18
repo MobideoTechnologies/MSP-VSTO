@@ -3,6 +3,7 @@ using Mobideo.Integration.ProjectVSTOAddIn;
 using ProjectAddIn3.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Data.Common;
 using System.IO;
@@ -48,12 +49,12 @@ namespace ProjectAddIn3.Classes
             return Task.CompletedTask;
         }
 
-        public async Task Export(object subProjectsListBox)
+        public async Task Export(object subProjectsListBox, BackgroundWorker exportService)
         {
             try
             {
               var selectedSubProjects = GetSelectedSubProjects(subProjectsListBox);
-              await MobideoExporter.ExportDataFromMobideoToMsp(selectedSubProjects);
+              await MobideoExporter.ExportDataFromMobideoToMsp(selectedSubProjects,exportService);
             }
             catch (System.Exception exception)
             {
@@ -66,12 +67,12 @@ namespace ProjectAddIn3.Classes
         }
 
 
-        public async Task<Tuple<int,int>> Import(object subProjectsListBox, bool validateOnly=false)
+        public async Task<Tuple<int,int>> Import(object subProjectsListBox, BackgroundWorker backgroundService, bool validateOnly=false)
         {
             try
             {
                 var selectedSubProjects = GetSelectedSubProjects(subProjectsListBox);
-                var uploadedFiles = await MobideoImporter.ImportFilesToMobideo(selectedSubProjects, validateOnly);
+                var uploadedFiles = await MobideoImporter.ImportFilesToMobideo(selectedSubProjects, backgroundService, validateOnly);
                 return uploadedFiles;
             }
             catch(System.Exception exception)

@@ -15,7 +15,7 @@ namespace ProjectAddIn3.Classes
 {
     public class TaskService : ITaskService
     {
-        public Task<Dictionary<string, object>> GetTasksFromMobideo(IEnumerable<string> taskReferneceIds)
+        public async Task<Dictionary<string, object>> GetTasksFromMobideo(IEnumerable<string> taskReferneceIds)
         {
             try
             {
@@ -34,9 +34,11 @@ namespace ProjectAddIn3.Classes
                     var currentTaskReferenceIds = taskReferneceIds.Skip(i).Take(pageSize).ToArray();
                     getTasksByReferenceIdsQuery.ReferenceIds = currentTaskReferenceIds;
                     getTasksExtendedPropertyQuery.ReferenceIds = currentTaskReferenceIds;
-                    var getTasksByReferenceIdsResponse = queryServicesClient.GetTasksByReferenceIds(new TokenCredentials(), userCredentials, getTasksByReferenceIdsQuery);
-                    var getTasksExtendedPropertyDictionary = GetTasksExtendedPropertyDictionary(queryServicesClient, userCredentials, getTasksExtendedPropertyQuery);
-                    getTasksByReferenceIdsResponse.Items?.ForEach(item =>
+                    var getTasksByReferenceIdsThread  = queryServicesClient.GetTasksByReferenceIdsAsync(new TokenCredentials(), userCredentials, getTasksByReferenceIdsQuery);
+                    var getTasksExtendedPropertyThread = GetTasksExtendedPropertyDictionary(queryServicesClient, userCredentials, getTasksExtendedPropertyQuery);
+                    var getTasksByReferenceIdsResponse = await getTasksByReferenceIdsThread;
+                    var getTasksExtendedPropertyDictionary = await getTasksExtendedPropertyThread;
+                    getTasksByReferenceIdsResponse.GetTasksByReferenceIdsResult?.Items?.ForEach(item =>
                     {
                         var taskReferenceIdUpper = item?.ReferenceId?.ToUpper().Trim();
                         if (!result.ContainsKey(taskReferenceIdUpper))
@@ -62,7 +64,7 @@ namespace ProjectAddIn3.Classes
                 }
 
                 Logger.Info("*** Done loading all tasks from mobideo");
-                return System.Threading.Tasks.Task.FromResult(result);
+                return result;
 
             }
             catch(Exception ex)
@@ -73,11 +75,11 @@ namespace ProjectAddIn3.Classes
  
         }
 
-        private static Dictionary<string, TaskInformation> GetTasksExtendedPropertyDictionary(GuideServicesQueryApiWebServiceClient queryServicesClient, UserCredentials userCredentials, TasksQuery getTasksExtendedPropertyQuery)
+        private async Task<Dictionary<string, TaskInformation>> GetTasksExtendedPropertyDictionary(GuideServicesQueryApiWebServiceClient queryServicesClient, UserCredentials userCredentials, TasksQuery getTasksExtendedPropertyQuery)
         {
-            var getTasksExtendedPropertyResponse = queryServicesClient.GetTasksExtendedProperty(new TokenCredentials(), userCredentials, getTasksExtendedPropertyQuery);
+            var getTasksExtendedPropertyResponse = await queryServicesClient.GetTasksExtendedPropertyAsync(new TokenCredentials(), userCredentials, getTasksExtendedPropertyQuery);
             var getTaskExtendedPropertyTasks = new Dictionary<string, TaskInformation>();
-            getTasksExtendedPropertyResponse.Items?.ForEach(item =>
+            getTasksExtendedPropertyResponse.GetTasksExtendedPropertyResult?.Items?.ForEach(item =>
             {
                 if (item.TaskInformation.IsNotNull())
                 {

@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using ProjectAddIn3.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.IO;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace ProjectAddIn3.Classes
 {
     public class MobideoImporter : IMobideoImporter
     {
-        public async Task<Tuple<int, int>> ImportFilesToMobideo(IEnumerable<SubProjectWrapper> selectedSubProjects,  bool validateOnly=false)
+        public async Task<Tuple<int, int>> ImportFilesToMobideo(IEnumerable<SubProjectWrapper> selectedSubProjects, BackgroundWorker backgroundService,  bool validateOnly=false)
         {
             Logger.Info("*** Start import files to mobideo");
             int successfullFiles = 0;
@@ -31,7 +32,8 @@ namespace ProjectAddIn3.Classes
             var subProjectsFiles = CreateSubProjectFiles(selectedSubProjects, out var filesToDelete);
             bool hasErrorOccured = false;
             var errorMessage = new StringBuilder();
-            int fileRelativePercentage = (1 / subProjectsFiles.Count) * 100;
+            var numOfFiles = subProjectsFiles.Count;
+            double fileRelativePercentage = 1.0 / numOfFiles * 100;
             foreach(var subProjectFile in subProjectsFiles)
             {
                 try
@@ -53,6 +55,7 @@ namespace ProjectAddIn3.Classes
                 }
                 finally
                 {
+                    backgroundService.ReportProgress((int)fileRelativePercentage);
                     Thread.Sleep(2000);
                 }
 

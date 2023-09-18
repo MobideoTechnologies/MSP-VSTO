@@ -88,7 +88,7 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             exportBtnTxt.BackColor = Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
             exportBtnTxt.ForeColor= Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(177)))), ((int)(((byte)(255)))));
             validateTextBox.ForeColor = Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(214)))), ((int)(((byte)(215)))));
-            loadingImage.Visible = true;
+            progressBar.Visible = true;
             loadingTextBox.Visible = true;
         }
 
@@ -115,7 +115,8 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
             exportBtnTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(249)))), ((int)(((byte)(253)))));
             exportBtnTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(111)))), ((int)(((byte)(239)))));
             validateTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(131)))), ((int)(((byte)(134)))));
-            loadingImage.Visible = false;
+            progressBar.Visible = false;
+            progressBar.Value = 0;
             loadingTextBox.Visible = false;
         }
 
@@ -168,35 +169,40 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
 
         private void RunImport(object sender, DoWorkEventArgs e)
         {
-            var uploadedFiles = MspVSTOManager.Import(subProjectsList).GetAwaiter().GetResult();
+            var uploadedFiles = MspVSTOManager.Import(subProjectsList, importService).GetAwaiter().GetResult();
             SuccessfulFiles = uploadedFiles.Item1;
             FailedFiles = uploadedFiles.Item2;
         }
 
         private void RunValidation(object sender, DoWorkEventArgs e)
         {
-            var uploadedFiles = MspVSTOManager.Import(subProjectsList,true).GetAwaiter().GetResult();
+            var uploadedFiles = MspVSTOManager.Import(subProjectsList, validationService, true).GetAwaiter().GetResult();
             SuccessfulFiles = uploadedFiles.Item1;
             FailedFiles = uploadedFiles.Item2;
         }
 
         private void RunExport(object sender, DoWorkEventArgs e)
         {
-            MspVSTOManager.Export(subProjectsList).GetAwaiter().GetResult();
+            MspVSTOManager.Export(subProjectsList, exportService).GetAwaiter().GetResult();
+        }
+
+        private void UpdateProgressBar(object sender, ProgressChangedEventArgs e)
+        {
+            progressBar.Value += e.ProgressPercentage;
         }
 
 
         private void DoWhenImportCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            ResetFormControls();
             MessageBox.Show(string.Format(ConfigurationManager.AppSettings["ImportCompletedText"], SuccessfulFiles, FailedFiles));
+            ResetFormControls();
             MspVSTOManager.UploadLogFile().GetAwaiter().GetResult();
         }
 
         private void DoWhenExportCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            ResetFormControls();
             MessageBox.Show(ConfigurationManager.AppSettings["ExportCompletedText"]);
+            ResetFormControls();
             MspVSTOManager.UploadLogFile().GetAwaiter().GetResult();
         }
     }

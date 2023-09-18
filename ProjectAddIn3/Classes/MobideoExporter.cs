@@ -7,9 +7,12 @@ using ProjectAddIn3.Interfaces;
 using ProjectAddIn3.Query;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Linq;
+using System.ServiceModel.Security;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Exception = System.Exception;
@@ -19,14 +22,23 @@ namespace ProjectAddIn3.Classes
 {
     public class MobideoExporter : IMobideoExporter
     {
-        public async Task ExportDataFromMobideoToMsp(IEnumerable<SubProjectWrapper> selectedSubProjects)
+        public async Task ExportDataFromMobideoToMsp(IEnumerable<SubProjectWrapper> selectedSubProjects, BackgroundWorker exportService)
         {
             try
             {
                 Logger.Info("*** Start export data from mobideo");
-                var projectTaskReferenceIds = GetProjectTasksReferenceIds(selectedSubProjects);
-                var projectMobideoTasks = await GetProjectTasksFromMobideo(projectTaskReferenceIds);
-                UpdateMspRecords(selectedSubProjects, projectMobideoTasks);
+                double progressPerecentage = 1.0 / selectedSubProjects.Count() * 100 / 3;
+                foreach(var subProject in selectedSubProjects)
+                {
+                    var subProjectTaskReferenceIds = GetSubProjectTasksReferenceIds(subProject);
+                    exportService.ReportProgress((int)progressPerecentage);
+                    var subProjectMobideoTasks = await GetSubProjectTasksFromMobideo(subProjectTaskReferenceIds);
+                    exportService.ReportProgress((int)progressPerecentage);
+                    UpdateMspRecords(subProject, subProjectMobideoTasks);
+                    exportService.ReportProgress((int)progressPerecentage);
+                }
+
+                Thread.Sleep(2000);
                 Logger.Info("*** Done export data from mobideo");
 
             }
@@ -36,36 +48,47 @@ namespace ProjectAddIn3.Classes
             }
         }
 
-        private async Task<Dictionary<string, object>> GetProjectTasksFromMobideo(IEnumerable<string> projectTaskReferenceIds)
+        private Dictionary<string,ExportObject> GetSubProjectStartedTasks(Dictionary<string, object> subProjectMobideoTasks)
+        {
+            var subProjectStartedMobdieoTasks = new Dictionary<string,ExportObject>();
+            subProjectMobideoTasks?.ForEach(task =>
+            {
+                var exportObject = task.Value as ExportObject;
+                if (exportObject.Started.HasValue)
+                {
+                    subProjectStartedMobdieoTasks.Add(task.Key,exportObject);
+                }
+            });
+
+            return subProjectStartedMobdieoTasks;
+        }
+
+        private async Task<Dictionary<string, object>> GetSubProjectTasksFromMobideo(IEnumerable<string> subProjectTaskReferenceIds)
         {
             ITaskService taskService = new TaskService();
-            var projectMobideoTasks = await taskService.GetTasksFromMobideo(projectTaskReferenceIds);
+            var projectMobideoTasks = await taskService.GetTasksFromMobideo(subProjectTaskReferenceIds);
             return projectMobideoTasks;
         }
         
-        private  IEnumerable<string> GetProjectTasksReferenceIds(IEnumerable<SubProjectWrapper> selectedSubProjects)
+        private  IEnumerable<string> GetSubProjectTasksReferenceIds(SubProjectWrapper subProject)
         {
             var projectTaskReferenceIds = new HashSet<string>();
-            foreach (var subProject in selectedSubProjects)
+            var currentSubProject = subProject.SubProjectLegacyObject.SourceProject;
+            foreach (Microsoft.Office.Interop.MSProject.Task syncline in currentSubProject.Tasks)
             {
-                var currentSubProject = subProject.SubProjectLegacyObject.SourceProject;
-                foreach (Microsoft.Office.Interop.MSProject.Task syncline in currentSubProject.Tasks)
+                if (syncline.OutlineLevel >= int.Parse(ConfigurationManager.AppSettings["MinTaskOutlineLevel"]) && !bool.Parse(syncline.Summary?.ToString()))
                 {
-                    if (syncline.OutlineLevel >= int.Parse(ConfigurationManager.AppSettings["MinTaskOutlineLevel"]))
+                    var rowTaskReferenceId = GetRowTaskReferenceId(syncline).ToUpper().Trim();
+                    if (!projectTaskReferenceIds.Contains(rowTaskReferenceId))
                     {
-                        var rowTaskReferenceId = GetRowTaskReferenceId(syncline).ToUpper().Trim();
-                        if (!projectTaskReferenceIds.Contains(rowTaskReferenceId))
-                        {
-                            projectTaskReferenceIds.Add(rowTaskReferenceId);
-                        }
+                        projectTaskReferenceIds.Add(rowTaskReferenceId);
                     }
                 }
             }
-
             return projectTaskReferenceIds.ToList();
         }
 
-        private void UpdateMspRecords(IEnumerable<SubProjectWrapper> selectedSubProjects, Dictionary<string, object> projectMobideoTasks)
+        private void UpdateMspRecords(SubProjectWrapper subProject, Dictionary<string, object> subProjectMobideoTasks)
         {
             var mspFieldToUpdateMapping = new Dictionary<string, string>();
             var mspFieldsToUpdateArray = ConfigurationManager.AppSettings["MspFieldsToUpdate"].Split(',').Select(mapping => mapping.Trim());
@@ -77,23 +100,25 @@ namespace ProjectAddIn3.Classes
 
             });
 
-            foreach (var subProject in selectedSubProjects)
+            var currentSubProject = subProject.SubProjectLegacyObject.SourceProject;
+            foreach (Microsoft.Office.Interop.MSProject.Task syncline in currentSubProject.Tasks)
             {
-                var currentSubProject = subProject.SubProjectLegacyObject.SourceProject;
-                foreach (Microsoft.Office.Interop.MSProject.Task syncline in currentSubProject.Tasks)
+                
+                if (syncline.OutlineLevel >= int.Parse(ConfigurationManager.AppSettings["MinTaskOutlineLevel"]) && !bool.Parse(syncline.Summary?.ToString()))
                 {
-                    if (syncline.OutlineLevel >= int.Parse(ConfigurationManager.AppSettings["MinTaskOutlineLevel"]) && !bool.Parse(syncline.Summary?.ToString()))
+                    string rowTaskReferenceIdUpper = GetRowTaskReferenceId(syncline).ToUpper().Trim();
+                    if (subProjectMobideoTasks.ContainsKey(rowTaskReferenceIdUpper))
                     {
-                        string rowTaskReferenceIdUpper = GetRowTaskReferenceId(syncline).ToUpper().Trim();
-                        if (projectMobideoTasks.ContainsKey(rowTaskReferenceIdUpper))
+                        var taskInformation = subProjectMobideoTasks[rowTaskReferenceIdUpper] as ExportObject;
+                        if (ShouldUpdateMspRecord(taskInformation, syncline))
                         {
-                            var taskInformation = projectMobideoTasks[rowTaskReferenceIdUpper] as ExportObject;
+
                             mspFieldToUpdateMapping.Keys.ForEach(mspFieldToUpdate =>
                             {
                                 var mobideoProperty = mspFieldToUpdateMapping[mspFieldToUpdate];
                                 var exitingMobideoPropertyValue = taskInformation.GetPropertyValue(mobideoProperty);
                                 var propertyInfo = taskInformation.GetType().GetProperty(mobideoProperty);
-                                if(exitingMobideoPropertyValue.IsNotNull() && (propertyInfo.PropertyType== typeof(DateTime) || propertyInfo.PropertyType == typeof(DateTime?)))
+                                if (exitingMobideoPropertyValue.IsNotNull() && (propertyInfo.PropertyType == typeof(DateTime) || propertyInfo.PropertyType == typeof(DateTime?)))
                                 {
                                     exitingMobideoPropertyValue = ConvertUtcToCustomerTimeZone(exitingMobideoPropertyValue);
                                 }
@@ -104,6 +129,21 @@ namespace ProjectAddIn3.Classes
                     }
                 }
             }
+        }
+
+        private bool ShouldUpdateMspRecord(ExportObject taskInformation, Microsoft.Office.Interop.MSProject.Task syncline)
+        {
+            if(!taskInformation.Started.HasValue) // task is not started
+            {
+                return false;
+            }
+
+            if (taskInformation.Completed.HasValue && !syncline.Date10.ToString().CaseInsensitiveEquals("NA")) // task is completed in msp
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private object ConvertUtcToCustomerTimeZone(object exitingMobideoPropertyValue)

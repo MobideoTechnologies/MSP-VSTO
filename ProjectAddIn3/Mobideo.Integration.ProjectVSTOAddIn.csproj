@@ -729,7 +729,7 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>453CA1917F8BB15C4575E3BF215C419791328A32</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>8DDEFE82B164E3A38030430462BE51F65C55DF3B</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

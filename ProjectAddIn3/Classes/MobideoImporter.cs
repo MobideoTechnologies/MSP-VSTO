@@ -34,30 +34,37 @@ namespace ProjectAddIn3.Classes
             var errorMessage = new StringBuilder();
             var numOfFiles = subProjectsFiles.Count;
             double fileRelativePercentage = 1.0 / numOfFiles * 100;
-            foreach(var subProjectFile in subProjectsFiles)
+            foreach (var subProjectFile in subProjectsFiles)
             {
-                try
+                for (int i = 0; i < 3; i++)
                 {
-                    Logger.Info("*** Uploading file {0} to customer files", subProjectFile.Item1);
-                    await UploadFileToMobideo(subProjectFile.Item1, subProjectFile.Item2, validateOnly);
-                    subProjectFile.Item2.Close();
-                    subProjectFile.Item2.Dispose();
-                    Logger.Info("*** Done Uploading file {0} to customer files", subProjectFile.Item1);
-                    successfullFiles++;
+                    try
+                    {
+                        Logger.Info("*** Uploading file {0} to customer files", subProjectFile.Item1);
+                        await UploadFileToMobideo(subProjectFile.Item1, subProjectFile.Item2, validateOnly);
+                        subProjectFile.Item2.Close();
+                        subProjectFile.Item2.Dispose();
+                        Logger.Info("*** Done Uploading file {0} to customer files", subProjectFile.Item1);
+                        successfullFiles++;
+                        break;
+                    }
+                    catch (Exception exception)
+                    {
+                        if (i == 2)
+                        {
+                            Logger.Error(exception, "An error occured while uploading file {0} to customer files", subProjectFile.Item1);
+                            hasErrorOccured = true;
+                            errorMessage.AppendLine(string.Format("An error occured while uploading file {0} to customer files", subProjectFile.Item1));
+                            failedFiles++;
+                            break;
+                        }
+
+                    }
                 }
-                catch(Exception exception)
-                {
-                    var fileErrorMessage = string.Format("An error occured while uploading file {0} to customer files", subProjectFile.Item1);
-                    Logger.Error(exception, fileErrorMessage, subProjectFile.Item1);
-                    hasErrorOccured = true;
-                    errorMessage.AppendLine(fileErrorMessage);
-                    failedFiles++;
-                }
-                finally
-                {
-                    backgroundService.ReportProgress((int)fileRelativePercentage);
-                    Thread.Sleep(2000);
-                }
+
+
+                backgroundService.ReportProgress((int)fileRelativePercentage);
+                Thread.Sleep(2000);
 
             }
 

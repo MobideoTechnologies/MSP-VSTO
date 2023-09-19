@@ -62,7 +62,8 @@ namespace ProjectAddIn3.Classes
             var response = client.Execute(request);
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
-                throw new Exception("Service could not upload stream of import results");
+                Logger.Error(new Exception(response.ErrorMessage), string.Format("An error occured while uploading file {0}", uploadFileName));
+                throw new Exception(response.Content);
             }
             Logger.Debug("succesfuly uploaded file to customer files at = {0}", uploadUrl);
             return Task.CompletedTask;

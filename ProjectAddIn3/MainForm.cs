@@ -194,13 +194,23 @@ namespace Mobideo.Integration.ProjectVSTOAddIn
 
         private void DoWhenImportCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            CompleteProgressBar();
             MessageBox.Show(string.Format(ConfigurationManager.AppSettings["ImportCompletedText"], SuccessfulFiles, FailedFiles));
             ResetFormControls();
             MspVSTOManager.UploadLogFile().GetAwaiter().GetResult();
         }
 
+        private void CompleteProgressBar()
+        {
+            if (progressBar.Value < 100)
+            {
+                progressBar.Value = 100;
+            }
+        }
+
         private void DoWhenExportCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            CompleteProgressBar();
             MessageBox.Show(ConfigurationManager.AppSettings["ExportCompletedText"]);
             ResetFormControls();
             MspVSTOManager.UploadLogFile().GetAwaiter().GetResult();

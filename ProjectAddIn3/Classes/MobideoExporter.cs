@@ -138,7 +138,7 @@ namespace ProjectAddIn3.Classes
                 return false;
             }
 
-            if (taskInformation.Completed.HasValue && !syncline.Date10.ToString().CaseInsensitiveEquals("NA")) // task is completed in msp
+            if (taskInformation.Completed.HasValue && !syncline.Date10.ToString().CaseInsensitiveEquals("NA") && syncline.PercentComplete.ToString() == "100") // task is completed in msp
             {
                 return false;
             }
